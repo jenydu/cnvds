@@ -1,9 +1,9 @@
-#' Given a list of genes, find the corresponding pLI scores for each gene.
+#' Given a list of genes, find the corresponding pHI scores for each gene.
 #'
 #' @param lstGenes A character vector of gene names.
 #'
 #' @return Returns a table of size (length of lstGenes) x 2, where each row
-#'    contains the gene name and its pLI value (if found).
+#'    contains the gene name and its pHI value (if found).
 #'
 #' @examples
 #'
@@ -11,31 +11,31 @@
 #' annotatedResult <- annotateCNV(chr = 1, start = 15654424, end = 15680097,
 #'                                type = 'DEL', num_copies = 1,
 #'                                reference = 'GRCh37')
-#' genepLI <- findpLI(annotatedResult$symbol)
+#' genepHI <- findpHI(annotatedResult$symbol)
 #'
 #' # Example 2:
-#' genepLI <- findpLI(c('ABHD5', 'ABLIM2', 'PRAMEF17'))
+#' genepHI <- findpHI(c('ABHD15', 'ABLIM2', 'APOC1'))
+#'
 #' @export
 #' @importFrom
 
-findpLI <- function(lstGenes) {
-  lstpLI <- readRDS('data/pLI_LOEUF_data.rds')
-
+findpHI <- function(lstGenes) {
+  pHI_pTS <- readRDS('data/pHaplo_pTriplo_data.rds')
+  lstpHI <- pHI_pTS[c('X.gene', 'pHaplo')]
 
   ## computation ##
   result <- as.data.frame(matrix(nrow = length(lstGenes), ncol = 2))
   for (i in seq_along(lstGenes)) {
-
-    pLI <-lstpLI[which(lstpLI$gene == lstGenes[i]),]
-    if (nrow(pLI) == 0) {
-      pLI <- -1
+    pHI <-lstpHI[which(lstpHI$X.gene == lstGenes[i]),]
+    if (nrow(pHI) == 0) {
+      pHI <- -1
     } else {
-      pLI <- pLI[,2]
+      pHI <- pHI[,2]
     }
-    result[i,] <- c(lstGenes[i], pLI)
+    result[i,] <- c(lstGenes[i], pHI)
   }
 
-  colnames(result) <- c('gene', 'pLI')
+  colnames(result) <- c('gene', 'pHI')
   return(result)
 }
 
