@@ -1,3 +1,5 @@
+#' Annotate a CNV Call
+#'
 #' Given a CNV call, which will include the chromosome number, start & end
 #' position, type of CNV (DUP/DEL), and the number of copies, return all genes
 #' that are fully contained in this region based on the GRCh37 or GRCh38
@@ -31,7 +33,6 @@
 #'                                reference = 'GRCh37')
 #'
 #' @export
-#' @importFrom
 
 annotateCNV <- function(chr, start, end, type, num_copies, reference) {
 
@@ -68,11 +69,14 @@ annotateCNV <- function(chr, start, end, type, num_copies, reference) {
   }
 
   ## computation ##
+  grch37 <- grch38 <- NULL
 
   if (reference == 'GRCh37') {
-    refGenome <- readRDS('data/grch37.rds')
+    load('~/CNVds/data/grch37.rda')
+    refGenome <- grch37
   } else {
-    refGenome <- readRDS('data/grch38.rds')
+    load('~/CNVds/data/grch38.rda')
+    refGenome <- grch38
   }
 
   same_chrom <- refGenome[which(refGenome$chr == chr),]

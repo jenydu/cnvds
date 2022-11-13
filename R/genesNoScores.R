@@ -1,3 +1,5 @@
+#' Return Genes With No Dosage Sensitivity Scores Available
+#'
 #' Given a list of genes and the name of the DS score, return the list of genes
 #' that don't have a score in the corresponding reference table, and print
 #' out the percent of genes without a score.
@@ -12,28 +14,34 @@
 #' @examples
 #'
 #' # Example 1:
-#' Using the annotations from the output of the annotateCNV() function.
+#' # Using the annotations from the output of the annotateCNV() function.
 #' annotatedResult <- annotateCNV(chr = 1, start = 15654424, end = 15680097,
 #'                                type = 'DEL', num_copies = 1,
 #'                                reference = 'GRCh37')
 #' genesWithoutScores <- genesNoScores(annotatedResult$symbol, 'pTS')
 #'
 #' # Example 2:
-#' Using a user-defined vector of strings consisting of gene names.
-#' genesWithoutScores <- genesNoScores(c('ABHD15', 'ABLIM2', 'APOC1'), 'pTS')
+#' # Using a user-defined vector of strings consisting of gene names.
+#' genesWithoutScores <- genesNoScores(c('ABHD15', 'ABLIM2', 'APOC1',
+#' 'randomstring'), 'pTS')
 #'
 #' @export
-#' @importFrom
 
 genesNoScores <- function(lstGenes, typeScore) {
 
   if (typeScore == 'pLI') {
-    refTable <- readRDS('data/pLI_LOEUF_data.rds')
+    pLI_data <- NULL
+    load('~/CNVds/data/pLI_data.rda')
+    refTable <- pLI_data
   } else if (typeScore == 'pHI') {
-    refTable <- readRDS('data/pHaplo_pTriplo_data.rds')
+    pHaplo_pTriplo_data <- NULL
+    load('~/CNVds/data/pHaplo_pTriplo_data.rda')
+    refTable <- pHaplo_pTriplo_data
     refTable <- refTable[c('X.gene', 'pHaplo')]
   } else {
-    refTable <- readRDS('data/pHaplo_pTriplo_data.rds')
+    pHaplo_pTriplo_data <- NULL
+    load('~/CNVds/data/pHaplo_pTriplo_data.rda')
+    refTable <- pHaplo_pTriplo_data
     refTable <- refTable[c('X.gene', 'pTriplo')]
   }
   colnames(refTable) <- c('gene', 'score')

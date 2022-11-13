@@ -1,15 +1,19 @@
 Package: CNVds
 Type: Package
-Title: What the Package Does (Title Case)
+Title: An R Package for Human Cnv Call Analyses With Regards to Dosage 
+  Sensitivity (Ds) Scores
 Version: 0.1.0
 Author: Jun Ni Du
 Maintainer: Jun Ni Du <junni.du@mail.utoronto.ca>
-Description: An R package for CNV analyses with regards to dosage sensitivity 
-  (ds) information of the genes that they encompass.
+Description: Evaluate the pathogenicities of human CNVs based on the dosage 
+  sensitivity scores (probability of loss intolerance, probability of 
+  haploinsufficiency, and probability of triplosensitivity) of the genes that 
+  are encompassed within.
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 7.2.1
 Imports: 
-    dplyr,
     ggplot2
+Depends: 
+    R (>= 2.10)

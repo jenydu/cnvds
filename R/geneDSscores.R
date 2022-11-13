@@ -1,3 +1,5 @@
+#' Find pLI, pHI, pTS Scores of a Gene
+#'
 #' Given a single gene symbol, find its associated pLI, pHI, and pTS scores.
 #'
 #' @param gene A character string that represents a gene symbol.
@@ -8,20 +10,21 @@
 #' geneDSscores <- geneDSscores('CHD8')
 #'
 #' @export
-#' @importFrom
 
 geneDSscores <- function(gene) {
-  pHI_pTS <- readRDS('data/pHaplo_pTriplo_data.rds')
-  pLI <- readRDS('data/pLI_LOEUF_data.rds')
+  pLI_data <- NULL
+  pHaplo_pTriplo_data <- NULL
+  load('~/CNVds/data/pLI_data.rda')
+  load('~/CNVds/data/pHaplo_pTriplo_data.rda')
 
-  gene_row = pHI_pTS[which(pHI_pTS$X.gene==gene),]
+  gene_row = pHaplo_pTriplo_data[which(pHaplo_pTriplo_data$X.gene==gene),]
   pHI <- gene_row[2]
   pTS <- gene_row[3]
 
-  pLI <- pLI[which(pLI$gene==gene),][2]
+  pLI <- pLI_data[which(pLI_data$gene==gene),][2]
 
   result <- matrix(nrow = 1, ncol = 3)
-  result[1,] <- c(pHI, pTS, pLI)
+  result <- cbind(pLI, pHI, pTS)
   colnames(result) <- c('pLI', 'pHI', 'pTS')
 
   return(result)
