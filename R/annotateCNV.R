@@ -1,4 +1,4 @@
-#' given a CNV call, which will include the chromosome number, start & end
+#' Given a CNV call, which will include the chromosome number, start & end
 #' position, type of CNV (DUP/DEL), and the number of copies, return all genes
 #' that are fully contained in this region based on the GRCh37 or GRCh38
 #' reference genome. This function will return a list of genes that are fully
@@ -26,18 +26,17 @@
 #'    of that CNV.
 #'
 #' @examples
-#' annotatedResult <- annotateCNV(chr = '1', start = 15654424, end = 15680097,
+#' annotatedResult <- annotateCNV(chr = 1, start = 15654424, end = 15680097,
 #'                                type = 'DEL', num_copies = 1,
 #'                                reference = 'GRCh37')
 #'
 #' @export
 #' @importFrom
 
-annotateCNV <- function(chr, start, end, type, num_copies) {
+annotateCNV <- function(chr, start, end, type, num_copies, reference) {
 
-  if(is.integer(chr) == FALSE) {
-    stop("Dosage sensitivity scores are only available for human autosomal
-         genes (chromosome 1-22).")
+  if(is.numeric(chr) == FALSE) {
+    stop("Chromosome number must be numeric.")
   }
 
   if (chr > 22 || chr < 1) {
@@ -45,7 +44,7 @@ annotateCNV <- function(chr, start, end, type, num_copies) {
          therefore chr must be within 1 to 22.")
   }
 
-  if (!(is.integer(start) && is.integer(end) && is.integer(num_copies))) {
+  if (!(is.numeric(start) && is.numeric(end) && is.numeric(num_copies))) {
     stop("The start & end position and the number of copies must be integers.
          (note: you can use as.integer() to convert numeric values ot inegers.)
          ")

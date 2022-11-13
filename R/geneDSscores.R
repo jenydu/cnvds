@@ -11,8 +11,8 @@
 #' @importFrom
 
 geneDSscores <- function(gene) {
-  pHI_pTS <- readRDS('pHaplo_pTriplo_data.rds')
-  pLI <- readRDS('pLI_LOEUF_data.rds')
+  pHI_pTS <- readRDS('data/pHaplo_pTriplo_data.rds')
+  pLI <- readRDS('data/pLI_LOEUF_data.rds')
 
   gene_row = pHI_pTS[which(pHI_pTS$X.gene==gene),]
   pHI <- gene_row[2]
