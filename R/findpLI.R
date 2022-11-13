@@ -24,7 +24,7 @@
 #' www.ncbi.nlm.nih.gov/pmc/articles/PMC7334197/}{Link}
 #'
 #' @export
-#' @import
+#' @importFrom
 
 findpLI <- function(lstGenes) {
   lstpLI <- readRDS('data/pLI_LOEUF_data.rds')
