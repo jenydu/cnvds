@@ -8,6 +8,8 @@
 
 The goal of CNVds is to …
 
+## Description
+
 ## Installation
 
 You can install the development version of CNVds from
@@ -18,38 +20,28 @@ You can install the development version of CNVds from
 devtools::install_github("jenydu/CNVds")
 ```
 
-## Example
+## Overview
 
-This is a basic example which shows you how to solve a common problem:
+## Contributions
 
-``` r
-library(CNVds)
-## basic example code
-```
+## References
 
-What is special about using `README.Rmd` instead of just `README.md`?
-You can include R chunks like so:
+Alexander-Bloch, A. et al. Copy number variant risk scores associated
+with cognition, psychopathology, and brain structure in youths in the
+philadelphia neurodevelopmental cohort. JAMA Psychiatry 79, 699–709
+(2022).
 
-``` r
-summary(cars)
-#>      speed           dist       
-#>  Min.   : 4.0   Min.   :  2.00  
-#>  1st Qu.:12.0   1st Qu.: 26.00  
-#>  Median :15.0   Median : 36.00  
-#>  Mean   :15.4   Mean   : 42.98  
-#>  3rd Qu.:19.0   3rd Qu.: 56.00  
-#>  Max.   :25.0   Max.   :120.00
-```
+Collins, R. L. et al. A cross-disorder dosage sensitivity map of the
+human genome. Cell 185, 3041-3055.e25 (2022).
 
-You’ll still need to render `README.Rmd` regularly, to keep `README.md`
-up-to-date. `devtools::build_readme()` is handy for this. You could also
-use GitHub Actions to re-render `README.Rmd` every time you push. An
-example workflow can be found here:
-<https://github.com/r-lib/actions/tree/v1/examples>.
+Karczewski, K. J. et al. The mutational constraint spectrum quantified
+from variation in 141,456 humans. Nature 581, 434–443 (2020).
 
-You can also embed plots, for example:
+## Acknowledgements
 
-<img src="man/figures/README-pressure-1.png" width="100%" />
-
-In that case, don’t forget to commit and push the resulting figure
-files, so they display on GitHub and CRAN.
+This package was developed as part of an assessment for 2019-2022
+BCB410H: Applied Bioinformatics course at the University of Toronto,
+Toronto, CANADA. `CNVds` welcomes issues, enhancement requests, and
+other contributions. To submit an issue, use the [GitHub
+issues](https://github.com/jenydu/CNVds/issues). Many thanks to those
+who provided feedback to improve this package.
