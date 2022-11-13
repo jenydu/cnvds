@@ -23,19 +23,12 @@ findpTS <- function(lstGenes) {
   pHI_pTS <- readRDS('data/pHaplo_pTriplo_data.rds')
   lstpTS <- pHI_pTS[c('X.gene', 'pTriplo')]
 
-  ## computation ##
-  result <- as.data.frame(matrix(nrow = length(lstGenes), ncol = 2))
-  for (i in seq_along(lstGenes)) {
-    pTS <-lstpTS[which(lstpTS$X.gene == lstGenes[i]),]
-    if (nrow(pTS) == 0) {
-      pTS <- -1
-    } else {
-      pTS <- pTS[,2]
-    }
-    result[i,] <- c(lstGenes[i], pTS)
-  }
+  lstGenes <- cbind(lstGenes)
+  colnames(lstGenes)<-c('X.gene')
+  result <- merge(lstGenes, lstpTS, by='X.gene', all.x = TRUE)
 
   colnames(result) <- c('gene', 'pTS')
+
   return(result)
 }
 

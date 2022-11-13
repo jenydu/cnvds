@@ -20,22 +20,16 @@
 
 findpLI <- function(lstGenes) {
   lstpLI <- readRDS('data/pLI_LOEUF_data.rds')
-
+  lstpLI <- lstpLI[c('gene', 'pLI')]
 
   ## computation ##
-  result <- as.data.frame(matrix(nrow = length(lstGenes), ncol = 2))
-  for (i in seq_along(lstGenes)) {
 
-    pLI <-lstpLI[which(lstpLI$gene == lstGenes[i]),]
-    if (nrow(pLI) == 0) {
-      pLI <- -1
-    } else {
-      pLI <- pLI[,2]
-    }
-    result[i,] <- c(lstGenes[i], pLI)
-  }
+  lstGenes <- cbind(lstGenes)
+  colnames(lstGenes)<-c('gene')
+  result <- merge(lstGenes, lstpLI, by='gene', all.x = TRUE)
 
   colnames(result) <- c('gene', 'pLI')
+
   return(result)
 }
 
