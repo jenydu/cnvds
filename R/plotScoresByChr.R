@@ -32,6 +32,7 @@
 #' @export
 #' @import ggplot2
 #' @import tidyr
+#' @import stats
 
 plotScoresByChr <- function(genes, DStype, thresh) {
   if(ncol(genes) != 3) {
@@ -48,6 +49,9 @@ plotScoresByChr <- function(genes, DStype, thresh) {
   genes <- drop_na(genes)
   title <- paste0(DStype, " Scores Distribution")
 
+  chr <- NULL
+  gene <- NULL
+  score <- NULL
   plot <- ggplot(genes, label=gene) +
     geom_point(aes(x = chr, y = score, colour = score > thresh)) + theme_bw() +
     xlab("Chromosome") + ylab("Score") + ggtitle(title) +

@@ -22,7 +22,7 @@ Given a list of genes, find the corresponding pLI scores for each gene.
 annotatedResult <- annotateCNV(chr = 1, start = 15654424, end = 15680097,
                                type = 'DEL', num_copies = 1,
                                reference = 'GRCh37')
-genepLI <- findpLI(annotatedResult$symbol)
+genepLI <- findpLI(annotatedResult$gene)
 
 # Example 2:
 # Using a user-defined vector of strings consisting of gene names.
