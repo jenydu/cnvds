@@ -14,8 +14,8 @@ A matrix with columns:
 }
 }
 \source{
-Collins, R. L. et al. A cross-disorder dosage sensitivity map of the
-human genome. \emph{Cell} 185, 3041-3055.e25 (2022). \href{https://www.sciencedirect.com/science/article/abs/pii/S0092867422007887#sec4.1}{Link}
+Collins, R. L. et al. (2022). A cross-disorder dosage sensitivity map of the
+human genome. \emph{Cell} 185, 3041-3055.e25. \href{https://doi.org/10.1016/j.cell.2022.06.036}{Link}
 }
 \usage{
 pHaplo_pTriplo_data

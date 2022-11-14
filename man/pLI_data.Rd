@@ -13,9 +13,9 @@ A matrix with columns:
 }
 }
 \source{
-Karczewski, K. J. et al. The mutational constraint spectrum
-quantified from variation in 141,456 humans. \emph{Nature} 581, 434–443
-(2020). \href{https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7334197/}{Link}
+Karczewski, K. J. et al. (2020). The mutational constraint spectrum
+quantified from variation in 141,456 humans. \emph{Nature} 581, 434–443.
+\href{https://doi.org/10.1038/s41586-020-2308-7}{Link}
 }
 \usage{
 pLI_data

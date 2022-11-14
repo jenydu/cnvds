@@ -15,9 +15,9 @@ A matrix with columns:
 }
 }
 \source{
-Ming, C, Wang, M, Wang, Q, et al. Whole genome sequencing–based copy
+Ming, C, Wang, M, Wang, Q, et al.(2022). Whole genome sequencing–based copy
 number variations reveal novel pathways and targets in Alzheimer's disease.
-\emph{Alzheimer's & Dementia} 18, 1846- 1867 (2022).
+\emph{Alzheimer's & Dementia} 18, 1846- 1867.
 \href{https://doi.org/10.1002/alz.12507}{Link}
 }
 \usage{

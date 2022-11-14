@@ -51,8 +51,8 @@
 #' A table containing 18641 autosomal genes and their corresponding probability
 #' of haploinsuffciency/triplosensitivity scores.
 #'
-#' @source Collins, R. L. et al. A cross-disorder dosage sensitivity map of the
-#' human genome. \emph{Cell} 185, 3041-3055.e25 (2022). \href{https://www.sciencedirect.com/science/article/abs/pii/S0092867422007887#sec4.1}{Link}
+#' @source Collins, R. L. et al. (2022). A cross-disorder dosage sensitivity map of the
+#' human genome. \emph{Cell} 185, 3041-3055.e25. \href{https://doi.org/10.1016/j.cell.2022.06.036}{Link}
 #'
 #' @format A matrix with columns:
 #' \describe{
@@ -73,9 +73,9 @@
 #' of loss intolerance, which is the probability that a gene is intolerant to a
 #' loss of function mutation.
 #'
-#' @source Karczewski, K. J. et al. The mutational constraint spectrum
-#' quantified from variation in 141,456 humans. \emph{Nature} 581, 434–443
-#' (2020). \href{https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7334197/}{Link}
+#' @source Karczewski, K. J. et al. (2020). The mutational constraint spectrum
+#' quantified from variation in 141,456 humans. \emph{Nature} 581, 434–443.
+#' \href{https://doi.org/10.1038/s41586-020-2308-7}{Link}
 #'
 #' @format A matrix with columns:
 #' \describe{
@@ -93,9 +93,9 @@
 #'
 #' A sample dataset of 200 CNV calls.
 #'
-#' @source Ming, C, Wang, M, Wang, Q, et al. Whole genome sequencing–based copy
+#' @source Ming, C, Wang, M, Wang, Q, et al.(2022). Whole genome sequencing–based copy
 #' number variations reveal novel pathways and targets in Alzheimer's disease.
-#' \emph{Alzheimer's & Dementia} 18, 1846- 1867 (2022).
+#' \emph{Alzheimer's & Dementia} 18, 1846- 1867.
 #' \href{https://doi.org/10.1002/alz.12507}{Link}
 #'
 #' @format A matrix with columns:
