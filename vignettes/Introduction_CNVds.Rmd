@@ -57,7 +57,7 @@ data(package = "CNVds")
 
 ## Components
 
-<img src="DU_J_A1.png" alt="DU_J_A1" width="500"/>
+<img src="DU_J_A1.png" alt="DU_J_A1" width="800"/>
 
 ## Sample Usage
 Annotate the CNV regions from sampleInputCNV.rda, and plot both the CNV region

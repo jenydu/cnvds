@@ -51,7 +51,7 @@ browseVignettes("CNVds")
 * `findpHI()`: Given a list of genes, find the corresponding pHI scores for each gene.
 * `findpTS()`: Given a list of genes, find the corresponding pTS scores for each gene.
 * `geneDSscores()`: Given a single gene symbol, find its associated pLI, pHI, and pTS scores.
-* `geneNoScores()`: Given a list of genes and the name of the DS score (pLI/pHI/pTS), return the list of genes that don't have a score in the corresponding reference table, and print out the percentage of genes without a score. (Note: it is recommended that you run this function after finding the dosage sensitivity scores for sanity check purposes.)
+* `geneNoScores()`: Given a list of genes and the name of the DS score (pLI/pHI/pTS), return the list of genes that don't have a score in the corresponding reference table, and print out the percentage of genes without a score. (Note: it is recommended that you run this function before finding the dosage sensitivity scores, for sanity check purposes.)
 * `plotCNVcounts()`: Given a list of CNV calls, plot the total number of unique duplication and deletion CNV regions in each chromosome.
 * `plotScoresByChr()`: Given a list of genes and their corresponding DS scores (pLI/pHI/pTS), plot the distribution of the scores and label genes that are especially dosage-sensitive (i.e. above a certain user-defined threshold).
 
@@ -62,8 +62,8 @@ browseVignettes("CNVds")
 The author of the package is Jun Ni Du. The approach to dosage sensitivity score calculation is based on Alexander-Bloch, A. et al. (2022)'s publication, with no direct codes taken. The reference tables are obtained from the following publications and/or packages:
 
 * `grch37.rda` and `grch38.rda` are obtained from the `annotables` package. The source files are published by Ensembl.
-* `pHaplo_pTriplo_data.rda` is obtained by Collins, R. L. et al. (2022).
-* `pLI_data.rda` is obtained by Karczewski, K. J. et al. (2020).
+* `pHaplo_pTriplo_data.rda` is obtained from Collins, R. L. et al. (2022).
+* `pLI_data.rda` is obtained from Karczewski, K. J. et al. (2020).
 * `sampleInputCNV.rda` is obtained from Ming, C, Wang, M, Wang, Q, et al. (2022), and a subset of 200 rows is randomly sampled for package demonstration purposes.
 
 The *plotScoresByChr* and *plotCNVcounts* functions uses the ggplot function from the `ggplot2` R package.

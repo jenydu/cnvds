@@ -44,12 +44,12 @@ plotCNVcounts <- function(lstCNV) {
 
   chr <- NULL
   type <- NULL
-  plot_bar <- ggplot(lstCNV, aes(x=chr, fill=type)) +
-    geom_bar(color='black',position='dodge') + xlab("Chromosome") + ylab("Count") +
+  plot_bar <- ggplot(lstCNV, aes(x = chr, fill = type)) +
+    geom_bar(color = 'black', position = 'dodge') +
+    xlab("Chromosome") + ylab("Count") +
     ggtitle("Number of CNV Regions in Each Chromosome") +
     scale_fill_manual("CNV Type",
-                      values = c("DEL" = "deepskyblue",
-                                 "DUP" = "gold")) +
+                      values = c("DEL" = "deepskyblue", "DUP" = "gold")) +
     theme_bw() + scale_x_continuous(breaks = seq(1, 22, by = 1)) +
     scale_y_continuous(expand = c(0,0))
 

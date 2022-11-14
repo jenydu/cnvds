@@ -63,14 +63,14 @@ plotScoresByChr <- function(genes, DStype, thresh) {
   chr <- NULL
   gene <- NULL
   score <- NULL
-  plot <- ggplot(genes, label=gene) +
+  plot <- ggplot(genes, label = gene) +
     geom_point(aes(x = chr, y = score, colour = score > thresh)) + theme_bw() +
     xlab("Chromosome") + ylab("Score") + ggtitle(title) +
-    scale_colour_manual(values = setNames(c('red','gray'),c(T, F))) +
-    scale_x_discrete(limits = factor(c(1:22)), expand = c(0,1.5)) +
+    scale_colour_manual(values = setNames(c('red', 'gray'),c(T, F))) +
+    scale_x_discrete(limits = factor(c(1:22)), expand = c(0, 1.5)) +
     geom_text(aes(x = chr, y = score,
-                  label=ifelse(score>thresh,as.character(gene),'')),
-                  hjust=0,vjust=0, size=3)
+                  label = ifelse(score > thresh, as.character(gene), '')),
+                  hjust = 0, vjust = 0, size = 3)
 
   return(plot)
 }

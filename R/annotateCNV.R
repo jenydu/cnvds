@@ -36,6 +36,8 @@
 
 annotateCNV <- function(chr, start, end, type, num_copies, reference) {
 
+  # check the inputs
+
   if(is.numeric(chr) == FALSE) {
     stop("Chromosome number must be numeric.")
   }
@@ -46,8 +48,7 @@ annotateCNV <- function(chr, start, end, type, num_copies, reference) {
   }
 
   if (!(is.numeric(start) && is.numeric(end))) {
-    stop("The start & end position must be numeric.)
-         ")
+    stop("The start & end position must be numeric.")
   }
 
   if(is.numeric(num_copies) == FALSE) {
@@ -71,6 +72,11 @@ annotateCNV <- function(chr, start, end, type, num_copies, reference) {
     stop("The value for the reference genome must be 'GRCh37' or 'GRCh38'.")
   }
 
+  if(missing(reference)){
+    reference <- 'GRCh37'
+    warning("Didn't specify threshold value, default to 'GRCh37'.")
+  }
+
   ## computation ##
   grch37 <- grch38 <- NULL
 
@@ -82,9 +88,9 @@ annotateCNV <- function(chr, start, end, type, num_copies, reference) {
     refGenome <- grch38
   }
 
-  same_chrom <- refGenome[which(refGenome$chr == chr),]
-  match_start <- same_chrom[which(same_chrom$start >= start),]
-  match_end <- same_chrom[which(match_start$end <= end),]
+  same_chrom <- refGenome[which(refGenome$chr == chr), ]
+  match_start <- same_chrom[which(same_chrom$start >= start), ]
+  match_end <- same_chrom[which(match_start$end <= end), ]
 
   if (type == 'DUP') {
     copyNumChange <- num_copies - 2

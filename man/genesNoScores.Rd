@@ -33,6 +33,6 @@ genesWithoutScores <- genesNoScores(annotatedResult$gene, 'pTS')
 # Example 2:
 # Using a user-defined vector of strings consisting of gene names.
 genesWithoutScores <- genesNoScores(c('ABHD15', 'ABLIM2', 'APOC1',
-'randomstring'), 'pTS')
+                                      'randomstring'), 'pTS')
 
 }

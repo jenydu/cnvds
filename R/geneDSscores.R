@@ -17,11 +17,11 @@ geneDSscores <- function(gene) {
   load('~/CNVds/data/pLI_data.rda')
   load('~/CNVds/data/pHaplo_pTriplo_data.rda')
 
-  gene_row = pHaplo_pTriplo_data[which(pHaplo_pTriplo_data$X.gene==gene),]
+  gene_row <- pHaplo_pTriplo_data[which(pHaplo_pTriplo_data$X.gene==gene), ]
   pHI <- gene_row[2]
   pTS <- gene_row[3]
 
-  pLI <- pLI_data[which(pLI_data$gene==gene),][2]
+  pLI <- pLI_data[which(pLI_data$gene==gene), ][2]
 
   result <- matrix(nrow = 1, ncol = 3)
   result <- cbind(pLI, pHI, pTS)

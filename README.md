@@ -65,7 +65,7 @@ browseVignettes("CNVds")
     (pLI/pHI/pTS), return the list of genes that don’t have a score in
     the corresponding reference table, and print out the percentage of
     genes without a score. (Note: it is recommended that you run this
-    function after finding the dosage sensitivity scores for sanity
+    function before finding the dosage sensitivity scores, for sanity
     check purposes.)
 -   `plotCNVcounts()`: Given a list of CNV calls, plot the total number
     of unique duplication and deletion CNV regions in each chromosome.
@@ -85,9 +85,9 @@ tables are obtained from the following publications and/or packages:
 
 -   `grch37.rda` and `grch38.rda` are obtained from the `annotables`
     package. The source files are published by Ensembl.
--   `pHaplo_pTriplo_data.rda` is obtained by Collins, R. L. et
+-   `pHaplo_pTriplo_data.rda` is obtained from Collins, R. L. et
     al. (2022).
--   `pLI_data.rda` is obtained by Karczewski, K. J. et al. (2020).
+-   `pLI_data.rda` is obtained from Karczewski, K. J. et al. (2020).
 -   `sampleInputCNV.rda` is obtained from Ming, C, Wang, M, Wang, Q, et
     al. (2022), and a subset of 200 rows is randomly sampled for package
     demonstration purposes.
