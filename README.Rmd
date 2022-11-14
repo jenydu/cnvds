@@ -18,9 +18,14 @@ knitr::opts_chunk$set(
 <!-- badges: start -->
 <!-- badges: end -->
 
-The goal of CNVds is to ...
-
 ## Description
+'CNVds' is an R package developed to evaluate the pathogenicities of human CNVs based on the dosage sensitivity scores of the genes that are encompassed within. Dosage sensitivity (DS) refers to the phenotypic changes a gene may produce due to changes in its copy numbers. This package focuses on the following three score metrics:
+* Probability of loss intolerance (pLI): the probability that a gene is intolerant to a loss of function mutation.
+* Probability of haploinsufficiency (pHI): the probability that a gene is copy number loss.
+* Probability of triplosensitivity (pTS): the probability that the gene is sensitive to copy number gain. 
+The reference DS scores are based on recent publications of genome-wide dosage sensitivity mappings. Compared to measuring CNV purely based on their physical attributes (e.g. size, number of genes, or know association with disease), DS scores provide additional metrics that are useful in the systematic identification of pathogenic CNVs.
+
+This package is developed for BCB410H: Applied Bioinformatics at the University of Toronto, Canada.
 
 ## Installation
 
@@ -32,6 +37,16 @@ devtools::install_github("jenydu/CNVds")
 ```
 
 ## Overview
+``` r
+ls("package:CNVds")
+data(package = "CNVds") 
+browseVignettes("CNVds")
+```
+`CNVds` currently contains 8 functions:
+
+
+![](./inst/extdata/DU_J_A1.png)
+
 
 ## Contributions
 

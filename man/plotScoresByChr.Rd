@@ -26,6 +26,9 @@ the distribution of the scores and label genes that are especially
 dosage-sensitive (i.e. above a certain user-defined threshold).
 }
 \examples{
+# Example 1:
+# Using the sample input file of 200 CNV calls, may take longer to run.
+\dontrun{
 sampleInputCNV <- NULL
 load('~/CNVds/data/sampleInputCNV.rda')
 annotated <- NULL
@@ -39,5 +42,13 @@ for (i in seq_along(1:nrow(sampleInputCNV))) {
 pHIscores <- findpHI(annotated$gene)
 annotated <- merge(annotated, pHIscores, by='gene')
 plotScoresByChr(annotated[c('chr', 'gene', 'pHI')], 'pHI', 0.8)
+}
+
+# Example 2:
+# Using a small dataset of 4 random data (not real genes & scores).
+annotated <- data.frame(c(1, 4, 6, 7),
+                        c('geneA', 'geneB', 'geneC', 'geneD'),
+                        c(0.7, 0.99, 0.2, 0.5))
+plotScoresByChr(annotated, 'pHI', 0.8)
 
 }
