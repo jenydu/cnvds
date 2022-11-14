@@ -37,6 +37,10 @@ human genome. Cell 185, 3041-3055.e25 (2022).
 Karczewski, K. J. et al. The mutational constraint spectrum quantified
 from variation in 141,456 humans. Nature 581, 434–443 (2020).
 
+Ming, C, Wang, M, Wang, Q, et al. Whole genome sequencing–based copy
+number variations reveal novel pathways and targets in Alzheimer’s
+disease. 18, 1846- 1867 (2022).
+
 ## Acknowledgements
 
 This package was developed as part of an assessment for 2019-2022

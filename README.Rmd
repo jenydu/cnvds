@@ -43,6 +43,11 @@ Collins, R. L. et al. A cross-disorder dosage sensitivity map of the human genom
 
 Karczewski, K. J. et al. The mutational constraint spectrum quantified from variation in 141,456 humans. Nature 581, 434–443 (2020).
 
+Ming, C, Wang, M, Wang, Q, et al. Whole genome sequencing–based copy
+number variations reveal novel pathways and targets in Alzheimer's disease.
+\emph{Alzheimer's & Dementia} 18, 1846- 1867 (2022).
+\href{https://doi.org/10.1002/alz.12507}{Link}
+
 ## Acknowledgements
 
 This package was developed as part of an assessment for 2019-2022 BCB410H: Applied Bioinformatics course at the University of Toronto, Toronto, CANADA. `CNVds` welcomes issues, enhancement requests, and other contributions. To submit an issue, use the [GitHub issues](https://github.com/jenydu/CNVds/issues). Many thanks to those who provided feedback to improve this package.
