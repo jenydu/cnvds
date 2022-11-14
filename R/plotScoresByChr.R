@@ -15,6 +15,9 @@
 #'    distribution of the gene scores.
 #'
 #' @examples
+#' # Example 1:
+#' # Using the sample input file of 200 CNV calls, may take longer to run.
+#' \dontrun{
 #' sampleInputCNV <- NULL
 #' load('~/CNVds/data/sampleInputCNV.rda')
 #' annotated <- NULL
@@ -28,6 +31,14 @@
 #' pHIscores <- findpHI(annotated$gene)
 #' annotated <- merge(annotated, pHIscores, by='gene')
 #' plotScoresByChr(annotated[c('chr', 'gene', 'pHI')], 'pHI', 0.8)
+#' }
+#'
+#' # Example 2:
+#' # Using a small dataset of 4 random data (not real genes & scores).
+#' annotated <- data.frame(c(1, 4, 6, 7),
+#'                         c('geneA', 'geneB', 'geneC', 'geneD'),
+#'                         c(0.7, 0.99, 0.2, 0.5))
+#' plotScoresByChr(annotated, 'pHI', 0.8)
 #'
 #' @export
 #' @import ggplot2
@@ -46,7 +57,7 @@ plotScoresByChr <- function(genes, DStype, thresh) {
   }
 
   colnames(genes) <- c('chr', 'gene', 'score')
-  genes <- drop_na(genes)
+  genes <- tidyr::drop_na(genes)
   title <- paste0(DStype, " Scores Distribution")
 
   chr <- NULL
