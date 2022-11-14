@@ -30,7 +30,7 @@
 
 plotCNVcounts <- function(lstCNV) {
 
-  if(ncol(lstCNV) != 4) {
+  if (ncol(lstCNV) != 4) {
     stop("Input must have 4 columns in the following order: chromosome number,
          start position, end position, type.")
   }
@@ -40,11 +40,12 @@ plotCNVcounts <- function(lstCNV) {
     stop("CNV type must be either 'DEL' (for deletion), or 'DUP'
          (for duplication).")
   }
+
   colnames(lstCNV) <- c('chr', 'start', 'end', 'type')
 
   chr <- NULL
   type <- NULL
-  plot_bar <- ggplot(lstCNV, aes(x = chr, fill = type)) +
+  plot_bar <- ggplot2::ggplot(lstCNV, aes(x = chr, fill = type)) +
     geom_bar(color = 'black', position = 'dodge') +
     xlab("Chromosome") + ylab("Count") +
     ggtitle("Number of CNV Regions in Each Chromosome") +

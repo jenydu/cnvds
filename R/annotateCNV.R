@@ -51,6 +51,10 @@ annotateCNV <- function(chr, start, end, type, num_copies, reference) {
     stop("The start & end position must be numeric.")
   }
 
+  if (start > end) {
+    stop("The start position must be earlier (smaller) than the end position.")
+  }
+
   if(is.numeric(num_copies) == FALSE) {
     stop("The number of copies must be numeric.")
   }

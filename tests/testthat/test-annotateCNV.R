@@ -1,111 +1,34 @@
 library(CNVds)
-# An example of tests for one function. Tests
-# should be provided for all functions.
-#
-# test_that("model fitting with three clusters", {
-#
-#   loglikelihood = -1001.01
-#   nClusters = 3
-#   dimensionality = 6
-#   observations = 1000
-#   probability = c(0.1, 0.5, 0.4)
-#
-#   InformationCriteria <- InfCriteriaCalculation(
-#     loglikelihood = loglikelihood,
-#     nClusters = nClusters,
-#     dimensionality = dimensionality,
-#     observations = observations,
-#     probability = probability)
-#
-#   expect_type(InformationCriteria, "list")
-#   expect_s3_class(InformationCriteria, "InfCriteriaCalculation")
-#   expect_length(InformationCriteria, 3)
-#   expect_identical(trunc(InformationCriteria$BICresults), 2202)
-#   expect_identical(trunc(InformationCriteria$AICresults), 2060)
-#   expect_identical(trunc(InformationCriteria$ICLresults), 2202)
-# })
-#
-#
-# test_that("model fitting with two clusters", {
-#
-#   loglikelihood = -2001.01
-#   nClusters = 2
-#   dimensionality = 6
-#   observations = 1000
-#   probability = c(0.4, 0.6)
-#
-#   InformationCriteria <- InfCriteriaCalculation(
-#     loglikelihood = loglikelihood,
-#     nClusters = nClusters,
-#     dimensionality = dimensionality,
-#     observations = observations,
-#     probability = probability)
-#
-#
-#   expect_type(InformationCriteria, "list")
-#   expect_s3_class(InformationCriteria, "InfCriteriaCalculation")
-#   expect_length(InformationCriteria, 3)
-#   expect_identical(trunc(InformationCriteria$BICresults), 4195)
-#   expect_identical(trunc(InformationCriteria$AICresults), 4058)
-#   expect_identical(trunc(InformationCriteria$ICLresults), 4195)
-# })
-#
-# context("Checking for invalid user input for InfCriteriaCalculation")
-# test_that("InfCriteriaCalculation error upon invalid user input", {
-#
-#   loglikelihood = -2001.01
-#   nClusters = 2
-#   dimensionality = 6
-#   observations = 1000
-#   probability = c(0.4, 0.6)
-#
-#   # loglikelihood provided as character
-#   expect_error(InformationCriteria <- InfCriteriaCalculation(
-#     loglikelihood = "-2001.01",
-#     nClusters = nClusters,
-#     dimensionality = dimensionality,
-#     observations = observations,
-#     probability = probability))
-#
-#   # nClusters provided as character
-#   expect_error(InformationCriteria <- InfCriteriaCalculation(
-#     loglikelihood = loglikelihood,
-#     nClusters = "2",
-#     dimensionality = dimensionality,
-#     observations = observations,
-#     probability = probability))
-#
-#   # dimensionality provided as a list
-#   expect_error(InformationCriteria <- InfCriteriaCalculation(
-#     loglikelihood = loglikelihood,
-#     nClusters = nClusters,
-#     dimensionality = list(6),
-#     observations = observations,
-#     probability = probability))
-#
-#   # observations provided as character
-#   expect_error(InformationCriteria <- InfCriteriaCalculation(
-#     loglikelihood = loglikelihood,
-#     nClusters = nClusters,
-#     dimensionality = dimensionality,
-#     observations = "1000",
-#     probability = probability))
-#
-#   # probability provided as a list
-#   expect_error(InformationCriteria <- InfCriteriaCalculation(
-#     loglikelihood = loglikelihood,
-#     nClusters = nClusters,
-#     dimensionality = dimensionality,
-#     observations = observations,
-#     probability = list(probability)))
-#
-#   # probability doesn't add to 1
-#   expect_error(InformationCriteria <- InfCriteriaCalculation(
-#     loglikelihood = loglikelihood,
-#     nClusters = nClusters,
-#     dimensionality = dimensionality,
-#     observations = observations,
-#     probability = c(0.5, 0.4)))
-# })
-#
-# # [END]
+
+test_that("annotateCNV() returns correct outputs", {
+
+  chr <- 1
+  start <- 15654424
+  end <- 15680097
+  type <- 'DEL'
+  num_copies <- 1
+  reference <- 'GRCh37'
+
+  annotatedResult <- annotateCNV(chr, start, end, type, num_copies, reference)
+
+  # Check function returns expected outputs
+  expect_identical(ncol(annotatedResult), 6L)
+  expect_identical(annotatedResult$gene, c('TMEM63A', 'DMAP1'))
+  expect_identical(annotatedResult$chr, c('1', '1'))
+  expect_identical(annotatedResult$start, c(225845536L, 44213455L))
+  expect_identical(annotatedResult$end, c(225882380L, 44220681L))
+  expect_identical(annotatedResult$type, c('DEL', 'DEL'))
+  expect_identical(annotatedResult$copyNumChange, c(1, 1))
+
+  # Incorrect inputs
+  # chr must be 1 to 22.
+  expect_error(annotatedResult <- annotateCNV(chr = 33, start, end, type,
+                                              num_copies, reference))
+  # start position cannot be greater than end position.
+  expect_error(annotatedResult <- annotateCNV(chr, start = 100, end = 50, type,
+                                              num_copies, reference))
+  # deletion CNVs cannot have 3 copies.
+  expect_error(annotatedResult <- annotateCNV(chr, start, end, type = "DEL",
+                                              num_copies = 3, reference))
+})
+# [END]

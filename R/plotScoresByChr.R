@@ -63,7 +63,7 @@ plotScoresByChr <- function(genes, DStype, thresh) {
   chr <- NULL
   gene <- NULL
   score <- NULL
-  plot <- ggplot(genes, label = gene) +
+  plot <- ggplot2::ggplot(genes, label = gene) +
     geom_point(aes(x = chr, y = score, colour = score > thresh)) + theme_bw() +
     xlab("Chromosome") + ylab("Score") + ggtitle(title) +
     scale_colour_manual(values = setNames(c('red', 'gray'),c(T, F))) +
