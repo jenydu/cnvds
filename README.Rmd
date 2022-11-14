@@ -45,8 +45,8 @@ Karczewski, K. J. et al. The mutational constraint spectrum quantified from vari
 
 Ming, C, Wang, M, Wang, Q, et al. Whole genome sequencing–based copy
 number variations reveal novel pathways and targets in Alzheimer's disease.
-\emph{Alzheimer's & Dementia} 18, 1846- 1867 (2022).
-\href{https://doi.org/10.1002/alz.12507}{Link}
+Alzheimer's & Dementia 18, 1846- 1867 (2022).
+[https://doi.org/10.1002/alz.12507](https://doi.org/10.1002/alz.12507)
 
 ## Acknowledgements
 

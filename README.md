@@ -39,7 +39,8 @@ from variation in 141,456 humans. Nature 581, 434–443 (2020).
 
 Ming, C, Wang, M, Wang, Q, et al. Whole genome sequencing–based copy
 number variations reveal novel pathways and targets in Alzheimer’s
-disease. 18, 1846- 1867 (2022).
+disease. Alzheimer’s & Dementia 18, 1846- 1867 (2022).
+<https://doi.org/10.1002/alz.12507>
 
 ## Acknowledgements
 
