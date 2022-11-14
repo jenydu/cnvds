@@ -20,6 +20,7 @@ knitr::opts_chunk$set(
 
 ## Description
 'CNVds' is an R package developed to evaluate the pathogenicities of human CNVs based on the dosage sensitivity scores of the genes that are encompassed within. Dosage sensitivity (DS) refers to the phenotypic changes a gene may produce due to changes in its copy numbers. This package focuses on the following three score metrics:
+
 * Probability of loss intolerance (pLI): the probability that a gene is intolerant to a loss of function mutation.
 * Probability of haploinsufficiency (pHI): the probability that a gene is copy number loss.
 * Probability of triplosensitivity (pTS): the probability that the gene is sensitive to copy number gain. 
