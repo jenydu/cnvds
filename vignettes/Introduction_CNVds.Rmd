@@ -1,20 +1,11 @@
 ---
-title: "A Tour of CNVds"
-author: "Jun Ni Du"
-date: "`r format(Sys.time(), '%d %b %Y')`"
-output: 
-  rmarkdown::html_vignette:
-    toc: true
-    number_sections: false
+title: "Introduction_CNVds"
+output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{A Tour of CNVds}
+  %\VignetteIndexEntry{Introduction_CNVds}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
-
-```{r setup1}
-library(CNVds)
-```
 
 ```{r setup, include=FALSE}
 # The following codes are adapted from Testing package: Introduction_TestPackage.Rmd
@@ -32,6 +23,10 @@ knit_hooks$set(par = function(before, options, envir)
        par(family = "sans", mar=c(4.1,4.1,1.1,1.1), mgp=c(3,1,0), tcl=-0.5)
 })
 set.seed(1122) # for exact reproducibility
+```
+
+```{r setup1}
+library(CNVds)
 ```
 
 ## Introduction
@@ -66,7 +61,6 @@ data(package = "CNVds")
 <div style="text-align:center"><img src="DU_J_A1.png" alt="DU_J_A1" width="500"/>
 
 <div style="text-align:left">
-
 
 ### Minimal requirements
 
@@ -111,11 +105,21 @@ Alexander-Bloch, A. et al. (2022). Copy number variant risk scores associated wi
 
 Collins, R. L. et al. (2022). A cross-disorder dosage sensitivity map of the human genome. *Cell* 185, 3041-3055.e25. [https://doi.org/10.1016/j.cell.2022.06.036](https://doi.org/10.1016/j.cell.2022.06.036)
 
+Jgraph. (2022). Drawio-desktop. Image created by Du, J. Retrieved November 14, 2022, from [https://app.diagrams.net/](https://app.diagrams.net/)
+
 Karczewski, K. J. et al. (2020). The mutational constraint spectrum quantified from variation in 141,456 humans. *Nature* 581, 434–443. [https://doi.org/10.1038/s41586-020-2308-7](https://doi.org/10.1038/s41586-020-2308-7)
 
 Ming, C, Wang, M, Wang, Q, et al. (2022). Whole genome sequencing–based copy
 number variations reveal novel pathways and targets in Alzheimer's disease.
 *Alzheimer's & Dementia* 18, 1846-1867. [https://doi.org/10.1002/alz.12507](https://doi.org/10.1002/alz.12507)
+
+R Core Team (2013). R: A language and environment for statistical computing. R Foundation for Statistical Computing, Vienna, Austria. ISBN 3-900051-07-0. [http://www.R-project.org/](http://www.R-project.org/)
+
+Silva, Anjali. (2022). Anjalisilva/TestingPackage: A Simple R Package Illustrating Components of an R Package: 2019-2022 BCB410H - Applied Bioinformatics, University of Toronto, Canada. GitHub. [https://github.com/anjalisilva/TestingPackage](https://github.com/anjalisilva/TestingPackage)
+
+Wickham H (2016). ggplot2: Elegant Graphics for Data Analysis. Springer-Verlag New York. ISBN 978-3-319-24277-4. [https://ggplot2.tidyverse.org](https://ggplot2.tidyverse.org)
+
+Wickham H, Girlich M (2022). tidyr: Tidy Messy Data. [https://tidyr.tidyverse.org](https://tidyr.tidyverse.org)
 
 ------------------------------------------------------------------------
 

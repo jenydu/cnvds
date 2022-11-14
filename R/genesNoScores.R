@@ -2,7 +2,7 @@
 #'
 #' Given a list of genes and the name of the DS score, return the list of genes
 #' that don't have a score in the corresponding reference table, and print
-#' out the percent of genes without a score.
+#' out the percentage of the input genes that doesn't have a score.
 #'
 #' @param lstGenes A character vector of gene names.
 #' @param typeScore A character string indicating the type of dosage sensitivity
