@@ -7,13 +7,31 @@
 plotCNVcounts(lstCNV)
 }
 \arguments{
-\item{lstCNV}{}
+\item{lstCNV}{A table consisting of the following columns, in order:
+chromosome number, start position, end position,
+type of CNV ('DUP'/'DEL').}
 }
 \value{
 Returns a barplot of the number of duplication and deletion CNVs
    grouped by chromosomes.
 }
 \description{
-Given a list of CNV calls, plot the total number of duplication and deletion
-CNVs in each chromosome.
+Given a list of CNV calls, plot the total number of unique duplication and
+deletion CNV regions in each chromosome.
+}
+\examples{
+# Example 1:
+# A mini example of 4 random CNV regions.
+CNVinput <- data.frame(c(1, 1, 2, 3),
+                       c(12312, 293012, 3829103, 3281901),
+                       c(23423, 402405, 4025002, 8531273),
+                       c('DEL', 'DUP', 'DEL', 'DEL'))
+plotCNVcounts(CNVinput)
+
+# Example 2:
+# Using the sample input of a list of CNV calls.
+sampleInputCNV <- NULL
+load('~/CNVds/data/sampleInputCNV.rda')
+plotCNVcounts(sampleInputCNV[c(1:4)])
+
 }

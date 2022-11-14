@@ -45,10 +45,13 @@ annotateCNV <- function(chr, start, end, type, num_copies, reference) {
          therefore chr must be within 1 to 22.")
   }
 
-  if (!(is.numeric(start) && is.numeric(end) && is.numeric(num_copies))) {
-    stop("The start & end position and the number of copies must be integers.
-         (note: you can use as.integer() to convert numeric values ot inegers.)
+  if (!(is.numeric(start) && is.numeric(end))) {
+    stop("The start & end position must be numeric.)
          ")
+  }
+
+  if(is.numeric(num_copies) == FALSE) {
+    stop("The number of copies must be numeric.")
   }
 
   if (!(type %in% c('DEL', 'DUP'))) {
@@ -92,7 +95,7 @@ annotateCNV <- function(chr, start, end, type, num_copies, reference) {
   result <- match_end
   result$type <- type
   result$copyNumChange <- copyNumChange
-
+  colnames(result)[1] <- 'gene'
   return(result)
 }
 
