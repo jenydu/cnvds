@@ -92,7 +92,8 @@ Plot the distribution of these scores.
 
 ## Package References
 
-[Silva, A. (2020) TestingPackage: An Example R Package For BCB410H. Unpublished.](https://github.com/anjalisilva/TestingPackage)
+[Du, J. (2022) CNVds: Analyzing Human CNVs Based on Dosage
+  Sensitivity Scores. Unpublished.](https://github.com/jenydu/CNVds)
 
 <br>
 
