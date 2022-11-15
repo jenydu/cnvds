@@ -42,8 +42,22 @@ encompassed by the input CNV regions, whether each gene is duplicated or
 deleted, and the number of copies.
 }
 \examples{
+# Example 1:
+# One CNV input.
 annotatedResult <- annotateCNV(chr = 1, start = 15654424, end = 15680097,
                                type = 'DEL', num_copies = 1,
                                reference = 'GRCh37')
-
+# Example 2:
+# Using the sample input file of 200 CNV calls, may take longer to run.
+\dontrun{
+sampleInputCNV <- NULL
+load('~/CNVds/data/sampleInputCNV.rda')
+annotated <- NULL
+for (i in seq_along(1:nrow(sampleInputCNV))) {
+  output <- annotateCNV(sampleInputCNV[i, 1], sampleInputCNV[i, 2],
+                        sampleInputCNV[i, 3], sampleInputCNV[i, 4],
+                        sampleInputCNV[i, 5], reference = 'GRCh37')
+  annotated <- rbind(annotated, output)
+}
+}
 }

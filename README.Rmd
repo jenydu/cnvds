@@ -25,9 +25,8 @@ knitr::opts_chunk$set(
 * Probability of haploinsufficiency (pHI): the probability that a gene is copy number loss.
 * Probability of triplosensitivity (pTS): the probability that the gene is sensitive to copy number gain. 
 
-The reference DS scores are based on recent publications of genome-wide dosage sensitivity mappings. Compared to measuring CNV purely based on their physical attributes (e.g. size, number of genes, or know association with disease), DS scores provide additional metrics that are useful in the systematic identification of pathogenic CNVs.
-
-This package is developed for BCB410H: Applied Bioinformatics at the University of Toronto, Canada.
+The reference DS scores are based on recent publications of genome-wide dosage sensitivity mappings. Compared to measuring CNV purely based on their physical attributes (e.g. size, number of genes, or know association with disease), DS scores provide additional metrics that are useful in the systematic identification of pathogenic CNVs. The `CNVds` package was developed using `R version 4.2.1 (2022-06-23 ucrt)`, 
+`Platform: x86_64-windows-10_x64`, and running under: `version build 19044`.
 
 ## Installation
 
@@ -37,6 +36,7 @@ You can install the development version of CNVds from [GitHub](https://github.co
 # install.packages("devtools")
 devtools::install_github("jenydu/CNVds")
 ```
+To run the shinyApp: Under construction
 
 ## Overview
 ``` r

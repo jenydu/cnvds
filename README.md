@@ -14,21 +14,21 @@ encompassed within. Dosage sensitivity (DS) refers to the phenotypic
 changes a gene may produce due to changes in its copy numbers. This
 package focuses on the following three score metrics:
 
--   Probability of loss intolerance (pLI): the probability that a gene
-    is intolerant to a loss of function mutation.
--   Probability of haploinsufficiency (pHI): the probability that a gene
-    is copy number loss.
--   Probability of triplosensitivity (pTS): the probability that the
-    gene is sensitive to copy number gain.
+- Probability of loss intolerance (pLI): the probability that a gene is
+  intolerant to a loss of function mutation.
+- Probability of haploinsufficiency (pHI): the probability that a gene
+  is copy number loss.
+- Probability of triplosensitivity (pTS): the probability that the gene
+  is sensitive to copy number gain.
 
 The reference DS scores are based on recent publications of genome-wide
 dosage sensitivity mappings. Compared to measuring CNV purely based on
 their physical attributes (e.g. size, number of genes, or know
 association with disease), DS scores provide additional metrics that are
-useful in the systematic identification of pathogenic CNVs.
-
-This package is developed for BCB410H: Applied Bioinformatics at the
-University of Toronto, Canada.
+useful in the systematic identification of pathogenic CNVs. The `CNVds`
+package was developed using `R version 4.2.1 (2022-06-23 ucrt)`,
+`Platform: x86_64-windows-10_x64`, and running under:
+`version build 19044`.
 
 ## Installation
 
@@ -40,6 +40,8 @@ You can install the development version of CNVds from
 devtools::install_github("jenydu/CNVds")
 ```
 
+To run the shinyApp: Under construction
+
 ## Overview
 
 ``` r
@@ -50,29 +52,29 @@ browseVignettes("CNVds")
 
 `CNVds` currently contains 8 functions:
 
--   `annotateCNV()`: Given a CNV call, return all genes that are fully
-    contained in this region based on the GRCh37 or GRCh38 reference
-    genome (specified by user).
--   `findpLI()`: Given a list of genes, find the corresponding pLI
-    scores for each gene.
--   `findpHI()`: Given a list of genes, find the corresponding pHI
-    scores for each gene.
--   `findpTS()`: Given a list of genes, find the corresponding pTS
-    scores for each gene.
--   `geneDSscores()`: Given a single gene symbol, find its associated
-    pLI, pHI, and pTS scores.
--   `geneNoScores()`: Given a list of genes and the name of the DS score
-    (pLI/pHI/pTS), return the list of genes that don’t have a score in
-    the corresponding reference table, and print out the percentage of
-    genes without a score. (Note: it is recommended that you run this
-    function before finding the dosage sensitivity scores, for sanity
-    check purposes.)
--   `plotCNVcounts()`: Given a list of CNV calls, plot the total number
-    of unique duplication and deletion CNV regions in each chromosome.
--   `plotScoresByChr()`: Given a list of genes and their corresponding
-    DS scores (pLI/pHI/pTS), plot the distribution of the scores and
-    label genes that are especially dosage-sensitive (i.e. above a
-    certain user-defined threshold).
+- `annotateCNV()`: Given a CNV call, return all genes that are fully
+  contained in this region based on the GRCh37 or GRCh38 reference
+  genome (specified by user).
+- `findpLI()`: Given a list of genes, find the corresponding pLI scores
+  for each gene.
+- `findpHI()`: Given a list of genes, find the corresponding pHI scores
+  for each gene.
+- `findpTS()`: Given a list of genes, find the corresponding pTS scores
+  for each gene.
+- `geneDSscores()`: Given a single gene symbol, find its associated pLI,
+  pHI, and pTS scores.
+- `geneNoScores()`: Given a list of genes and the name of the DS score
+  (pLI/pHI/pTS), return the list of genes that don’t have a score in the
+  corresponding reference table, and print out the percentage of genes
+  without a score. (Note: it is recommended that you run this function
+  before finding the dosage sensitivity scores, for sanity check
+  purposes.)
+- `plotCNVcounts()`: Given a list of CNV calls, plot the total number of
+  unique duplication and deletion CNV regions in each chromosome.
+- `plotScoresByChr()`: Given a list of genes and their corresponding DS
+  scores (pLI/pHI/pTS), plot the distribution of the scores and label
+  genes that are especially dosage-sensitive (i.e. above a certain
+  user-defined threshold).
 
 ![](./inst/extdata/DU_J_A1.png)
 
@@ -83,14 +85,14 @@ sensitivity score calculation is based on Alexander-Bloch, A. et
 al. (2022)’s publication, with no direct codes taken. The reference
 tables are obtained from the following publications and/or packages:
 
--   `grch37.rda` and `grch38.rda` are obtained from the `annotables`
-    package. The source files are published by Ensembl.
--   `pHaplo_pTriplo_data.rda` is obtained from Collins, R. L. et
-    al. (2022).
--   `pLI_data.rda` is obtained from Karczewski, K. J. et al. (2020).
--   `sampleInputCNV.rda` is obtained from Ming, C, Wang, M, Wang, Q, et
-    al. (2022), and a subset of 200 rows is randomly sampled for package
-    demonstration purposes.
+- `grch37.rda` and `grch38.rda` are obtained from the `annotables`
+  package. The source files are published by Ensembl.
+- `pHaplo_pTriplo_data.rda` is obtained from Collins, R. L. et
+  al. (2022).
+- `pLI_data.rda` is obtained from Karczewski, K. J. et al. (2020).
+- `sampleInputCNV.rda` is obtained from Ming, C, Wang, M, Wang, Q, et
+  al. (2022), and a subset of 200 rows is randomly sampled for package
+  demonstration purposes.
 
 The *plotScoresByChr* and *plotCNVcounts* functions uses the ggplot
 function from the `ggplot2` R package. The *plotScoresByChr* also uses
