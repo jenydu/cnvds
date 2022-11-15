@@ -36,7 +36,6 @@
 #' # Example 2:
 #' # Using the sample input file of 200 CNV calls, may take longer to run.
 #' \dontrun{
-#' sampleInputCNV <- NULL
 #' load('~/CNVds/data/sampleInputCNV.rda')
 #' annotated <- NULL
 #' for (i in seq_along(1:nrow(sampleInputCNV))) {
@@ -99,11 +98,9 @@ annotateCNV <- function(chr, start, end, type, num_copies, reference) {
   grch37 <- grch38 <- NULL
 
   if (reference == 'GRCh37') {
-    load('~/CNVds/data/grch37.rda')
-    refGenome <- grch37
+    refGenome <- readRDS('~/CNVds/inst/extdata/grch37.rds')
   } else {
-    load('~/CNVds/data/grch38.rda')
-    refGenome <- grch38
+    refGenome <- readRDS('~/CNVds/inst/extdata/grch38.rds')
   }
 
   same_chrom <- refGenome[which(refGenome$chr == chr), ]
