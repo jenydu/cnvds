@@ -1,7 +1,7 @@
 Package: CNVds
 Type: Package
-Title: An R Package for Human Cnv Call Analyses With Regards to Dosage 
-  Sensitivity (Ds) Scores
+Title: An R Package for Human CNV Call Analyses With Regards to Dosage 
+  Sensitivity (DS) Scores
 Version: 0.1.0
 Author: Jun Ni Du
 Maintainer: Jun Ni Du <junni.du@mail.utoronto.ca>
