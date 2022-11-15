@@ -31,7 +31,7 @@ library(CNVds)
 
 ## Introduction
 
-'CNVds' is an R package developed to evaluate the pathogenicities of human CNVs based on the dosage sensitivity scores (probability of loss intolerance, probability of haploinsufficiency, and probability of triplosensitivity) of the genes that are encompassed within. This package is developed for BCB410H: Applied Bioinformatics at the University of Toronto, Canada. **This document gives a tour of CNVds (version 0.1.0)**. It was written in R Markdown, using the [knitr](https://cran.r-project.org/package=knitr) package for production. See `help(package = "CNVds")` for further details.
+`CNVds` is an R package developed to evaluate the pathogenicities of human CNVs based on the dosage sensitivity scores (probability of loss intolerance, probability of haploinsufficiency, and probability of triplosensitivity) of the genes that are encompassed within. This package is developed for BCB410H: Applied Bioinformatics at the University of Toronto, Canada. **This document gives a tour of CNVds (version 0.1.0)**. It was written in R Markdown, using the [knitr](https://cran.r-project.org/package=knitr) package for production. See `help(package = "CNVds")` for further details.
 
 To download **CNVds**, use the following commands:
 
