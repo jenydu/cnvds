@@ -60,14 +60,16 @@ data(package = "CNVds")
 <img src="DU_J_A1.png" alt="DU_J_A1" width="800"/>
 
 ## Sample Usage
-Annotate the CNV regions from sampleInputCNV.rda, and plot both the CNV region
-distribution and pHI score distribution.
+Load the CNV regions from sampleInputCNV.rda, and plot the distribution of 
+the CNV regions.
 
 ```
-sampleInputCNV <- NULL
 load('~/CNVds/data/sampleInputCNV.rda')
 plotCNVcounts(sampleInputCNV[c(1:4)])
+```
 
+Annotate the CNV inputs.
+```
 annotated <- NULL
 for (i in seq_along(1:nrow(sampleInputCNV))) {
   output <- annotateCNV(sampleInputCNV[i, 1], sampleInputCNV[i, 2],                       
@@ -75,11 +77,20 @@ for (i in seq_along(1:nrow(sampleInputCNV))) {
                         sampleInputCNV[i, 5], reference = 'GRCh37')
   annotated <- rbind(annotated, output)
   }
+```
 
+Check the amount of genes without pHI scores, then find the corresponding pHI 
+scores. 
+```
+  noScores <- genesNoScores(annotated$gene, 'pHI')
   pHIscores <- findpHI(annotated$gene)
+```
+
+Plot the distribution of these scores.
+```
   annotated <- merge(annotated, pHIscores, by='gene')
   plotScoresByChr(annotated[c('chr', 'gene', 'pHI')], 'pHI', 0.8)
-}
+
 ```
 
 ## Package References
@@ -90,23 +101,29 @@ for (i in seq_along(1:nrow(sampleInputCNV))) {
 
 ## References
 
-Alexander-Bloch, A. et al. (2022). Copy number variant risk scores associated with cognition, psychopathology, and brain structure in youths in the philadelphia neurodevelopmental cohort. *JAMA Psychiatry* 79, 699--709. <https://doi.org/10.1001/jamapsychiatry.2022.1017>
+Alexander-Bloch, A. et al. (2022). Copy number variant risk scores associated with cognition, psychopathology, and brain structure in youths in the philadelphia neurodevelopmental cohort. *JAMA Psychiatry* 79, 699–709. [https://doi.org/10.1001/jamapsychiatry.2022.1017](https://doi.org/10.1001/jamapsychiatry.2022.1017)
 
-Collins, R. L. et al. (2022). A cross-disorder dosage sensitivity map of the human genome. *Cell* 185, 3041-3055.e25. <https://doi.org/10.1016/j.cell.2022.06.036>
+Collins, R. L. et al. (2022). A cross-disorder dosage sensitivity map of the human genome. *Cell* 185, 3041-3055.e25. [https://doi.org/10.1016/j.cell.2022.06.036](https://doi.org/10.1016/j.cell.2022.06.036)
 
-Jgraph. (2022). Drawio-desktop. Image created by Du, J. Retrieved November 14, 2022, from <https://app.diagrams.net/>
+Cunningham, F. et al. (2022). Ensembl 2022. *Nucleic Acids Research* 50(1), D988-D995. [https://doi.org/10.1093/nar/gkab1049](https://doi.org/10.1093/nar/gkab1049)
 
-Karczewski, K. J. et al. (2020). The mutational constraint spectrum quantified from variation in 141,456 humans. *Nature* 581, 434--443. <https://doi.org/10.1038/s41586-020-2308-7>
+Jgraph. (2022). Drawio-desktop. Image created by Du, J. Retrieved November 14, 2022, from [https://app.diagrams.net/](https://app.diagrams.net/)
 
-Ming, C, Wang, M, Wang, Q, et al. (2022). Whole genome sequencing--based copy number variations reveal novel pathways and targets in Alzheimer's disease. *Alzheimer's & Dementia* 18, 1846-1867. <https://doi.org/10.1002/alz.12507>
+Karczewski, K. J. et al. (2020). The mutational constraint spectrum quantified from variation in 141,456 humans. *Nature* 581, 434–443. [https://doi.org/10.1038/s41586-020-2308-7](https://doi.org/10.1038/s41586-020-2308-7)
 
-R Core Team (2013). R: A language and environment for statistical computing. R Foundation for Statistical Computing, Vienna, Austria. ISBN 3-900051-07-0. <http://www.R-project.org/>
+Ming, C, Wang, M, Wang, Q, et al. (2022). Whole genome sequencing–based copy
+number variations reveal novel pathways and targets in Alzheimer's disease.
+*Alzheimer's & Dementia* 18, 1846-1867. [https://doi.org/10.1002/alz.12507](https://doi.org/10.1002/alz.12507)
 
-Silva, Anjali. (2022). Anjalisilva/TestingPackage: A Simple R Package Illustrating Components of an R Package: 2019-2022 BCB410H - Applied Bioinformatics, University of Toronto, Canada. GitHub. <https://github.com/anjalisilva/TestingPackage>
+R Core Team (2013). R: A language and environment for statistical computing. R Foundation for Statistical Computing, Vienna, Austria. ISBN 3-900051-07-0. [http://www.R-project.org/](http://www.R-project.org/)
 
-Wickham H (2016). ggplot2: Elegant Graphics for Data Analysis. Springer-Verlag New York. ISBN 978-3-319-24277-4. <https://ggplot2.tidyverse.org>
+Silva, A. (2022). Anjalisilva/TestingPackage: A Simple R Package Illustrating Components of an R Package: 2019-2022 BCB410H - Applied Bioinformatics, University of Toronto, Canada. GitHub. [https://github.com/anjalisilva/TestingPackage](https://github.com/anjalisilva/TestingPackage)
 
-Wickham H, Girlich M (2022). tidyr: Tidy Messy Data. <https://tidyr.tidyverse.org>
+Turner, S. (2022). Stephenturner/annotables: R data package for annotating/converting Gene IDs. Github. [https://github.com/stephenturner/annotables](https://github.com/stephenturner/annotables)
+
+Wickham, H. (2016). ggplot2: Elegant Graphics for Data Analysis. Springer-Verlag New York. ISBN 978-3-319-24277-4. [https://ggplot2.tidyverse.org](https://ggplot2.tidyverse.org)
+
+Wickham, H, Girlich, M. (2022). tidyr: Tidy Messy Data. [https://tidyr.tidyverse.org](https://tidyr.tidyverse.org)
 
 ------------------------------------------------------------------------
 

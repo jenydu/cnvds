@@ -8,7 +8,7 @@
 
 ## Description
 
-‘CNVds’ is an R package developed to evaluate the pathogenicities of
+`CNVds` is an R package developed to evaluate the pathogenicities of
 human CNVs based on the dosage sensitivity scores of the genes that are
 encompassed within. Dosage sensitivity (DS) refers to the phenotypic
 changes a gene may produce due to changes in its copy numbers. This
@@ -110,6 +110,9 @@ Collins, R. L. et al. (2022). A cross-disorder dosage sensitivity map of
 the human genome. *Cell* 185, 3041-3055.e25.
 <https://doi.org/10.1016/j.cell.2022.06.036>
 
+Cunningham, F. et al. (2022). Ensembl 2022. *Nucleic Acids Research*
+50(1), D988-D995. <https://doi.org/10.1093/nar/gkab1049>
+
 Jgraph. (2022). Drawio-desktop. Image created by Du, J. Retrieved
 November 14, 2022, from <https://app.diagrams.net/>
 
@@ -126,23 +129,27 @@ R Core Team (2013). R: A language and environment for statistical
 computing. R Foundation for Statistical Computing, Vienna, Austria. ISBN
 3-900051-07-0. <http://www.R-project.org/>
 
-Silva, Anjali. (2022). Anjalisilva/TestingPackage: A Simple R Package
+Silva, A. (2022). Anjalisilva/TestingPackage: A Simple R Package
 Illustrating Components of an R Package: 2019-2022 BCB410H - Applied
 Bioinformatics, University of Toronto, Canada. GitHub.
 <https://github.com/anjalisilva/TestingPackage>
 
-Wickham H (2016). ggplot2: Elegant Graphics for Data Analysis.
+Turner, S. (2022). Stephenturner/annotables: R data package for
+annotating/converting Gene IDs. Github.
+<https://github.com/stephenturner/annotables>
+
+Wickham, H. (2016). ggplot2: Elegant Graphics for Data Analysis.
 Springer-Verlag New York. ISBN 978-3-319-24277-4.
 <https://ggplot2.tidyverse.org>
 
-Wickham H, Girlich M (2022). tidyr: Tidy Messy Data.
+Wickham, H, Girlich, M. (2022). tidyr: Tidy Messy Data.
 <https://tidyr.tidyverse.org>
 
 ## Acknowledgements
 
-This package was developed as part of an assessment for 2019-2022
-BCB410H: Applied Bioinformatics course at the University of Toronto,
-Toronto, CANADA. `CNVds` welcomes issues, enhancement requests, and
-other contributions. To submit an issue, use the [GitHub
+This package was developed as part of an assessment for 2022 BCB410H:
+Applied Bioinformatics course at the University of Toronto, Toronto,
+CANADA. `CNVds` welcomes issues, enhancement requests, and other
+contributions. To submit an issue, use the [GitHub
 issues](https://github.com/jenydu/CNVds/issues). Many thanks to those
 who provided feedback to improve this package.

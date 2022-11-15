@@ -18,7 +18,6 @@
 #' # Example 1:
 #' # Using the sample input file of 200 CNV calls, may take longer to run.
 #' \dontrun{
-#' sampleInputCNV <- NULL
 #' load('~/CNVds/data/sampleInputCNV.rda')
 #' annotated <- NULL
 #' for (i in seq_along(1:nrow(sampleInputCNV))) {
