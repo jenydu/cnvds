@@ -22,11 +22,11 @@ package focuses on the following three score metrics:
   is sensitive to copy number gain.
 
 The reference DS scores are based on recent publications of genome-wide
-dosage sensitivity mappings. Compared to measuring CNV purely based on
-their physical attributes (e.g. size, number of genes, or know
-association with disease), DS scores provide additional metrics that are
-useful in the systematic identification of pathogenic CNVs. The `CNVds`
-package was developed using `R version 4.2.1 (2022-06-23 ucrt)`,
+dosage sensitivity mappings. Compared to solely measuring the physical
+attributes of the CNVs (e.g. size, number of genes, or known association
+with disease), DS scores provide additional metrics that are useful in
+the systematic identification of pathogenic CNVs. The `CNVds` package
+was developed using `R version 4.2.1 (2022-06-23 ucrt)`,
 `Platform: x86_64-windows-10_x64`, and running under:
 `version build 19044`.
 
@@ -86,7 +86,8 @@ al. (2022)’s publication, with no direct codes taken. The reference
 tables are obtained from the following publications and/or packages:
 
 - `grch37.rda` and `grch38.rda` are obtained from the `annotables`
-  package. The source files are published by Ensembl.
+  package. The source files are published by Ensembl (Cunningham, F. et
+  al. (2022)).
 - `pHaplo_pTriplo_data.rda` is obtained from Collins, R. L. et
   al. (2022).
 - `pLI_data.rda` is obtained from Karczewski, K. J. et al. (2020).
