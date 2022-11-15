@@ -1,0 +1,12 @@
+citHeader("To cite CNVds in publications use:")
+
+citEntry(
+  entry    = "Unpublished",
+  title    = "CNVds: Analyzing Human CNVs Based on Dosage Sensitivity Scores",
+  author   = "Jun Ni Du",
+  note     = "Unpublished",
+  year     = "2022",
+
+  textVersion = paste("Du, J. (2022) CNVds: Analyzing Human CNVs Based on Dosage
+  Sensitivity Scores. Unpublished. URL https://github.com/jenydu/CNVds.")
+)
