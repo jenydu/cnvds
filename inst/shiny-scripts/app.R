@@ -54,9 +54,10 @@ ui <- fluidPage(
                    selected = "head"),
 
       selectInput("score", "Choose a score metric:",
-                  choices = c("pLI: Probability of loss intolerance",
-                              "pHI: Probability of haploinsufficiency",
-                              "pTS: Probability of triplosensitivit")),
+                  choices = c("Probability of loss intolerance (pLI)" = 'pLI',
+                              "Probability of haploinsufficiency (pHI)" = 'pHI',
+                              "Probability of triplosensitivity (pTS)" = 'pTS'),
+                  selected = 'pHI'),
 
       actionButton(inputId = "button2",
                    label = "Run Analysis"),
@@ -69,8 +70,8 @@ ui <- fluidPage(
 
     # Main panel for displaying outputs ----
     mainPanel(
-      plotOutput("CNVPlot")
-
+      plotOutput("CNVPlot"),
+      plotOutput("annoPlot")
 
     )
 
@@ -114,13 +115,29 @@ server <- function(input, output) {
   annotation <- eventReactive(eventExpr = input$button2, {
     annotated <- NULL
     for (i in seq_along(1:nrow(get_file_or_default()))) {
-      output <- annotateCNV(get_file_or_default()[i, 1], get_file_or_default()[i, 2],
+      output <- CNVds::annotateCNV(get_file_or_default()[i, 1], get_file_or_default()[i, 2],
                             get_file_or_default()[i, 3], get_file_or_default()[i, 4],
                             get_file_or_default()[i, 5], reference = 'GRCh37')
       annotated <- rbind(annotated, output)
     }
+
+    if (input$score == 'pLI') {
+      DSscores <- findpLI(annotated$gene)
+    } else if (input$score == 'pHI') {
+      DSscores <- findpHI(annotated$gene)
+    } else {
+      DSscores <- findpTS(annotated$gene)
+    }
+
+    annotated <- merge(annotated, DSscores, by='gene')
+    return(annotated[c('chr', 'gene', input$score)])
   })
 
+
+  output$annoPlot <- renderPlot({
+    if (! is.null(annotation()))
+      plotScoresByChr(annotation(), input$score, 0.8)
+  })
 
 
 }
