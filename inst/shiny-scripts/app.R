@@ -53,17 +53,23 @@ ui <- fluidPage(
                                All = "all"),
                    selected = "head"),
 
-      tableOutput("tbl"),
+      selectInput("score", "Choose a score metric:",
+                  choices = c("pLI: Probability of loss intolerance",
+                              "pHI: Probability of haploinsufficiency",
+                              "pTS: Probability of triplosensitivit")),
 
       actionButton(inputId = "button2",
                    label = "Run Analysis"),
+      tableOutput("tbl"),
+
+
 
 
     ),
 
     # Main panel for displaying outputs ----
     mainPanel(
-
+      plotOutput("CNVPlot")
 
 
     )
@@ -95,7 +101,26 @@ server <- function(input, output) {
     })
 
 
+  CNVinfo <- eventReactive(eventExpr = input$button2, {
+    return(get_file_or_default()[c(1:4)])
 
+  })
+
+  output$CNVPlot <- renderPlot({
+    if (! is.null(CNVinfo()))
+      CNVds::plotCNVcounts(CNVinfo())
+  })
+
+  Annotation <- eventReactive(eventExpr = input$button2, {
+    annotated <- NULL
+    for (i in seq_along(1:nrow(get_file_or_default()))) {
+      output <- annotateCNV(get_file_or_default()[i, 1], get_file_or_default()[i, 2],
+                            get_file_or_default()[i, 3], get_file_or_default()[i, 4],
+                            get_file_or_default()[i, 5], reference = 'GRCh37')
+      annotated <- rbind(annotated, output)
+    }
+
+  })
 
 }
 
