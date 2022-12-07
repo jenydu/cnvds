@@ -30,7 +30,9 @@ plotCNVcounts(CNVinput)
 
 # Example 2:
 # Using the sample input of a list of CNV calls.
-load('~/CNVds/data/sampleInputCNV.rda')
+inputPath <- system.file("extdata", "sampleInputCNV.csv", package = "CNVds")
+# Read data
+sampleInputCNV <- read.csv(file = inputPath, header = TRUE)
 plotCNVcounts(sampleInputCNV[c(1:4)])
 
 }

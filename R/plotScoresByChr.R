@@ -17,8 +17,11 @@
 #' @examples
 #' # Example 1:
 #' # Using the sample input file of 200 CNV calls, may take longer to run.
-#' \dontrun{
-#' load('~/CNVds/data/sampleInputCNV.rda')
+#'
+#' inputPath <- system.file("extdata", "sampleInputCNV.csv", package = "CNVds")
+#' # Read data
+#' sampleInputCNV <- read.csv(file = inputPath, header = TRUE)
+#'
 #' annotated <- NULL
 #' for (i in seq_along(1:nrow(sampleInputCNV))) {
 #'   output <- annotateCNV(sampleInputCNV[i, 1], sampleInputCNV[i, 2],
@@ -30,7 +33,7 @@
 #' pHIscores <- findpHI(annotated$gene)
 #' annotated <- merge(annotated, pHIscores, by='gene')
 #' plotScoresByChr(annotated[c('chr', 'gene', 'pHI')], 'pHI', 0.8)
-#' }
+#'
 #'
 #' # Example 2:
 #' # Using a small dataset of 4 random data (not real genes & scores).

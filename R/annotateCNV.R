@@ -96,7 +96,6 @@ annotateCNV <- function(chr, start, end, type, num_copies, reference) {
   }
 
   ## computation ##
-  grch37 <- grch38 <- NULL
 
   if (reference == 'GRCh37') {
     refGenome <- grch37
