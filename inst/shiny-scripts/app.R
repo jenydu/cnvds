@@ -5,7 +5,7 @@ library(shinyalert)
 ui <- fluidPage(
 
   # App title ----
-  titlePanel("Uploading Files"),
+  titlePanel("Analyze Copy Number Variant (CNV) Regions Based on Dosage Sensitivity Scores"),
 
   # Sidebar layout with input and output definitions ----
   sidebarLayout(
@@ -13,22 +13,27 @@ ui <- fluidPage(
     # Sidebar panel for inputs ----
     sidebarPanel(
 
+      tags$p("Upload a .csv file that contains a list of CNV regions.
+             If left empty, a sample input of 1000 CNV regions will be used as input."),
+      tags$p("The file should contain 5 columns, in the order of:
+             (also see sample input at the bottom for formatting style)"),
+      tags$ol(
+        tags$li("chromosome number"),
+        tags$li("start position"),
+        tags$li("end position"),
+        tags$li("type of CNV (DEL/DUP)"),
+        tags$li("number of copies")
+      ),
+
       # Input: Select a file ----
-      fileInput("file1", "Choose CSV File",
+      fileInput("file1", "Upload your CSV file",
                 multiple = FALSE,
                 accept = c("text/csv",
                            "text/comma-separated-values,text/plain",
                            ".csv")),
 
-
-      # actionButton(inputId = "button1",
-      #              label = "Sample Input"),
-
-      # Horizontal line ----
-      tags$hr(),
-
       # Input: Checkbox if file has header ----
-      checkboxInput("header", "Header", TRUE),
+      checkboxInput("header", "This .csv file contains a header", TRUE),
 
       # Input: Select separator ----
       radioButtons("sep", "Separator",
@@ -42,16 +47,26 @@ ui <- fluidPage(
                    choices = c(None = "",
                                "Double Quote" = '"',
                                "Single Quote" = "'"),
-                   selected = '"'),
-
-      # Horizontal line ----
-      tags$hr(),
-
-      # Input: Select number of rows to display ----
-      radioButtons("disp", "Display",
+                   selected = ''),
+      radioButtons("disp", "Preview of the Inputted Table",
                    choices = c(Head = "head",
                                All = "all"),
                    selected = "head"),
+      tags$p("Please check that your input is formatted correctly before running the analysis."),
+      tableOutput("tbl"),
+
+      # Horizontal line ----
+      tags$hr(style="border-color: black;"),
+
+      tags$p("The CNVds package currently supports three dosage sensitivity score metrics:"),
+      tags$ul(
+        tags$li("Probability of loss intolerance (pLI):
+                the probability that a gene is intolerant to a loss of function mutation."),
+        tags$li("Probability of haploinsufficiency (pHI):
+                the probability that a gene is sensitive to copy number loss."),
+        tags$li("Probability of triplosensitivity (pTS):
+                the probability that the gene is sensitive to copy number gain.")
+      ),
 
       selectInput("score", "Choose a score metric:",
                   choices = c("Probability of loss intolerance (pLI)" = 'pLI',
@@ -59,9 +74,12 @@ ui <- fluidPage(
                               "Probability of triplosensitivity (pTS)" = 'pTS'),
                   selected = 'pHI'),
 
+      textInput(inputId = "thresh",
+                label = "Enter a number between 0 and 1. Genes with scores above
+                this threshold will be coloured in red.", "0.8"),
+
       actionButton(inputId = "button2",
                    label = "Run Analysis"),
-      tableOutput("tbl"),
 
 
 
@@ -70,8 +88,46 @@ ui <- fluidPage(
 
     # Main panel for displaying outputs ----
     mainPanel(
-      plotOutput("CNVPlot"),
-      plotOutput("annoPlot")
+      tabsetPanel(type = "tabs",
+                  tabPanel("Overview of the Outputs",
+                           h4("Instructions: In the left side panel, upload your
+                              inputs in a .csv file, choose a dosage sensitivity
+                              score and input a threshold value. Confirm your in
+                              put is formatted correctly and click 'Run Analysis
+                              '."),
+
+                           h3("Summary of the Annotation Results"),
+                           br(),
+                           h4("Total Number of Genes Annotated"),
+                           verbatimTextOutput("numGenes"),
+                           br(),
+                           h4("Percent of Genes With No Scores Available"),
+                           verbatimTextOutput("percentNoScores"),
+                           h4("Akaike Information Criterion (AIC)"),
+                           verbatimTextOutput("textOutAIC")),
+                  tabPanel("CNV Region Distribution",
+                           h4("Instructions: In the left side panel, upload your
+                              inputs in a .csv file, choose a dosage sensitivity
+                              score and input a threshold value. Confirm your in
+                              put is formatted correctly and click 'Run Analysis
+                              '."),
+
+                           h3("Pairs Plot of Log-transformed RNAseq Count Dataset:"),
+                           br(),
+                           plotOutput("CNVPlot")),
+                  tabPanel("Score Distribution",
+                           h4("Instructions: In the left side panel, upload your
+                              inputs in a .csv file, choose a dosage sensitivity
+                              score and input a threshold value. Confirm your in
+                              put is formatted correctly and click 'Run Analysis
+                              '."),
+
+                           h3("Plot of Information Criteria Values:"),
+                           br(),
+                           br(),
+                           plotOutput("annoPlot"))
+      )
+
 
     )
 
@@ -115,18 +171,21 @@ server <- function(input, output) {
   annotation <- eventReactive(eventExpr = input$button2, {
     annotated <- NULL
     for (i in seq_along(1:nrow(get_file_or_default()))) {
-      output <- CNVds::annotateCNV(get_file_or_default()[i, 1], get_file_or_default()[i, 2],
-                            get_file_or_default()[i, 3], get_file_or_default()[i, 4],
-                            get_file_or_default()[i, 5], reference = 'GRCh37')
+      output <- CNVds::annotateCNV(get_file_or_default()[i, 1],
+                                   get_file_or_default()[i, 2],
+                                   get_file_or_default()[i, 3],
+                                   get_file_or_default()[i, 4],
+                                   get_file_or_default()[i, 5],
+                                   reference = 'GRCh37')
       annotated <- rbind(annotated, output)
     }
 
     if (input$score == 'pLI') {
-      DSscores <- findpLI(annotated$gene)
+      DSscores <- CNVds::findpLI(annotated$gene)
     } else if (input$score == 'pHI') {
-      DSscores <- findpHI(annotated$gene)
+      DSscores <- CNVds::findpHI(annotated$gene)
     } else {
-      DSscores <- findpTS(annotated$gene)
+      DSscores <- CNVds::findpTS(annotated$gene)
     }
 
     annotated <- merge(annotated, DSscores, by='gene')
@@ -136,9 +195,17 @@ server <- function(input, output) {
 
   output$annoPlot <- renderPlot({
     if (! is.null(annotation()))
-      plotScoresByChr(annotation(), input$score, 0.8)
+      plotScoresByChr(annotation(), input$score, input$thresh)
   })
 
+  output$numGenes <- renderPrint({
+    if (! is.null(annotation()))
+      nrow(annotation())
+  })
+  output$percentNoScores <- renderPrint({
+    if (! is.null(annotation()))
+      CNVds::genesNoScores(annotation()$gene, input$score)
+  })
 
 }
 
