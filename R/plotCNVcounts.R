@@ -67,7 +67,7 @@ plotCNVcounts <- function(lstCNV) {
 
     chr <- NULL
     plot_bar <- ggplot2::ggplot(lstCNV, aes(x = chr)) +
-      geom_bar(color = 'black') +
+      geom_bar(color = 'black', fill = 'green') +
       xlab("Chromosome") + ylab("Count") +
       ggtitle(paste0("Number of CNV Regions in Each Chromosome
                      (Note: all inputted regions are ", CNVtypes[1],
