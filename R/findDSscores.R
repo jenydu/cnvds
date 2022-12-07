@@ -27,7 +27,6 @@
 
 findpHI <- function(lstGenes) {
 
-  pHaplo_pTriplo_data <- readRDS('~/CNVds/inst/extdata/pHaplo_pTriplo_data.rds')
   lstpHI <- pHaplo_pTriplo_data[c('X.gene', 'pHaplo')]
 
   lstGenes <- cbind(lstGenes)
@@ -68,7 +67,6 @@ findpHI <- function(lstGenes) {
 
 findpTS <- function(lstGenes) {
 
-  pHaplo_pTriplo_data <- readRDS('~/CNVds/inst/extdata/pHaplo_pTriplo_data.rds')
   lstpTS <- pHaplo_pTriplo_data[c('X.gene', 'pTriplo')]
 
   lstGenes <- cbind(lstGenes)
@@ -110,7 +108,6 @@ findpTS <- function(lstGenes) {
 
 findpLI <- function(lstGenes) {
 
-  pLI_data <- readRDS('~/CNVds/inst/extdata/pLI_data.rds')
   lstpLI <- pLI_data[c('gene', 'pLI')]
 
   ## computation ##

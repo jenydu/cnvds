@@ -12,8 +12,6 @@
 #' @export
 
 geneDSscores <- function(gene) {
-  pLI_data <- readRDS('~/CNVds/inst/extdata/pLI_data.rds')
-  pHaplo_pTriplo_data <- readRDS('~/CNVds/inst/extdata/pHaplo_pTriplo_data.rds')
 
   gene_row <- pHaplo_pTriplo_data[which(pHaplo_pTriplo_data$X.gene==gene), ]
   pHI <- gene_row[2]

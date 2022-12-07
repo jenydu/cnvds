@@ -29,12 +29,12 @@
 
 genesNoScores <- function(lstGenes, typeScore) {
   if (typeScore == 'pLI') {
-    refTable <- readRDS('~/CNVds/inst/extdata/pLI_data.rds')
+    refTable <- pLI_data
   } else if (typeScore == 'pHI') {
-    refTable <- readRDS('~/CNVds/inst/extdata/pHaplo_pTriplo_data.rds')
+    refTable <- pHaplo_pTriplo_data
     refTable <- refTable[c('X.gene', 'pHaplo')]
   } else {
-    refTable <- readRDS('~/CNVds/inst/extdata/pHaplo_pTriplo_data.rds')
+    refTable <- pHaplo_pTriplo_data
     refTable <- refTable[c('X.gene', 'pTriplo')]
   }
   colnames(refTable) <- c('gene', 'score')

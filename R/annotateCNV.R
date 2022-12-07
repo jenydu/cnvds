@@ -35,15 +35,16 @@
 #'                                reference = 'GRCh37')
 #' # Example 2:
 #' # Using the sample input file of 200 CNV calls, may take longer to run.
-#' \dontrun{
-#' load('~/CNVds/data/sampleInputCNV.rda')
+#' inputPath <- system.file("extdata", "sampleInputCNV.csv", package = "CNVds")
+#' # Read data
+#' sampleInputCNV <- read.csv(file = inputPath, header = TRUE)
 #' annotated <- NULL
 #' for (i in seq_along(1:nrow(sampleInputCNV))) {
 #'   output <- annotateCNV(sampleInputCNV[i, 1], sampleInputCNV[i, 2],
 #'                         sampleInputCNV[i, 3], sampleInputCNV[i, 4],
 #'                         sampleInputCNV[i, 5], reference = 'GRCh37')
 #'   annotated <- rbind(annotated, output)
-#' }
+#'
 #' }
 #' @export
 
@@ -98,9 +99,9 @@ annotateCNV <- function(chr, start, end, type, num_copies, reference) {
   grch37 <- grch38 <- NULL
 
   if (reference == 'GRCh37') {
-    refGenome <- readRDS('~/CNVds/inst/extdata/grch37.rds')
+    refGenome <- grch37
   } else {
-    refGenome <- readRDS('~/CNVds/inst/extdata/grch38.rds')
+    refGenome <- grch38
   }
 
   same_chrom <- refGenome[which(refGenome$chr == chr), ]
