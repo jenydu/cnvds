@@ -41,28 +41,17 @@ genesNoScores <- function(lstGenes, typeScore) {
   lstGenes <- cbind(lstGenes)
   colnames(lstGenes) <- c('gene')
   result <- merge(lstGenes, refTable, by = 'gene', all.x = TRUE)
-
   totalGenes <- nrow(result)
-  if (totalGenes > 0) {
-    result <- result[is.na(result$score), ]
-    totalNA <- nrow(result)
-    result <- result$gene
+  result <- result[is.na(result$score), ]
+  totalNA <- nrow(result)
+  result <- result$gene
 
-    percentNA <- totalNA / totalGenes
+  percentNA <- totalNA / totalGenes
 
-    message <- paste0("Percent of input genes without ", typeScore, " scores: ", percentNA)
-    print(message)
+  message <- paste0("Percent of input genes without ", typeScore, " scores: ", percentNA)
+  print(message)
 
-    if (nrow(result) > 0) {
-      return(result)
-    } else {
-      return(invisible(NULL))
-    }
-  } else {
-    print('No genes were annotated.')
-    return(invisible(NULL))
-  }
-
+  return(result)
 }
 
 # [END]
