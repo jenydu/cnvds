@@ -33,8 +33,9 @@ The reference DS scores are based on recent publications of genome-wide dosage s
 You can install the development version of CNVds from [GitHub](https://github.com/) with:
 
 ``` r
-# install.packages("devtools")
-devtools::install_github("jenydu/CNVds")
+require("devtools")
+devtools::install_github("jenydu/CNVds", build_vignettes = TRUE)
+library("CNVds")
 ```
 To run the shinyApp: Under construction
 

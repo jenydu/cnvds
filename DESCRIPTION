@@ -12,7 +12,7 @@ Description: Evaluate the pathogenicities of human CNVs based on the dosage
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 7.2.1
+RoxygenNote: 7.2.2
 Imports: 
     ggplot2,
     tidyr
