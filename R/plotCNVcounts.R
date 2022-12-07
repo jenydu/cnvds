@@ -37,23 +37,49 @@ plotCNVcounts <- function(lstCNV) {
   }
 
   CNVtypes <- sort(unique(lstCNV[,4]))
-  if (CNVtypes[1] !=  'DEL' || (CNVtypes[2] != 'DUP')) {
+
+  if (length(CNVtypes) == 2) {
+    if (CNVtypes[1] !=  'DEL' || (CNVtypes[2] != 'DUP')) {
+      stop("CNV type must be either 'DEL' (for deletion), or 'DUP'
+         (for duplication).")
+    }
+
+    colnames(lstCNV) <- c('chr', 'start', 'end', 'type')
+
+    chr <- NULL
+    type <- NULL
+    plot_bar <- ggplot2::ggplot(lstCNV, aes(x = chr, fill = type)) +
+      geom_bar(color = 'black', position = 'dodge') +
+      xlab("Chromosome") + ylab("Count") +
+      ggtitle("Number of CNV Regions in Each Chromosome") +
+      scale_fill_manual("CNV Type",
+                        values = c("DEL" = "deepskyblue", "DUP" = "gold")) +
+      theme_bw() + scale_x_continuous(breaks = seq(1, 22, by = 1)) +
+      scale_y_continuous(expand = c(0,0))
+
+  } else if (length(CNVtypes) == 1) {
+    if (CNVtypes[1] !=  'DEL' && (CNVtypes[1] != 'DUP')) {
+      stop("CNV type must be either 'DEL' (for deletion), or 'DUP'
+         (for duplication).")
+    }
+
+    colnames(lstCNV) <- c('chr', 'start', 'end', 'type')
+
+    chr <- NULL
+    plot_bar <- ggplot2::ggplot(lstCNV, aes(x = chr)) +
+      geom_bar(color = 'black') +
+      xlab("Chromosome") + ylab("Count") +
+      ggtitle("Number of CNV Regions in Each Chromosome") +
+      theme_bw() + scale_x_continuous(breaks = seq(1, 22, by = 1)) +
+      scale_y_continuous(expand = c(0,0))
+
+  } else {
     stop("CNV type must be either 'DEL' (for deletion), or 'DUP'
          (for duplication).")
   }
 
-  colnames(lstCNV) <- c('chr', 'start', 'end', 'type')
 
-  chr <- NULL
-  type <- NULL
-  plot_bar <- ggplot2::ggplot(lstCNV, aes(x = chr, fill = type)) +
-    geom_bar(color = 'black', position = 'dodge') +
-    xlab("Chromosome") + ylab("Count") +
-    ggtitle("Number of CNV Regions in Each Chromosome") +
-    scale_fill_manual("CNV Type",
-                      values = c("DEL" = "deepskyblue", "DUP" = "gold")) +
-    theme_bw() + scale_x_continuous(breaks = seq(1, 22, by = 1)) +
-    scale_y_continuous(expand = c(0,0))
+
 
   return(plot_bar)
 }

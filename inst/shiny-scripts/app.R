@@ -111,7 +111,7 @@ server <- function(input, output) {
       CNVds::plotCNVcounts(CNVinfo())
   })
 
-  Annotation <- eventReactive(eventExpr = input$button2, {
+  annotation <- eventReactive(eventExpr = input$button2, {
     annotated <- NULL
     for (i in seq_along(1:nrow(get_file_or_default()))) {
       output <- annotateCNV(get_file_or_default()[i, 1], get_file_or_default()[i, 2],
@@ -119,8 +119,9 @@ server <- function(input, output) {
                             get_file_or_default()[i, 5], reference = 'GRCh37')
       annotated <- rbind(annotated, output)
     }
-
   })
+
+
 
 }
 
