@@ -24,8 +24,8 @@ Reference Consortium Human Build 37) are published by Ensembl
 grch37
 }
 \description{
-A subset of the GRCh37 reference genome dataset to only contain gene symbol,
-chromosome, and the start & end position of each gene.
+A subset of the GRCh37 reference genome dataset to only contain the gene symbol,
+chromosome number, and the start & end position of all autosomal genes.
 }
 \examples{
 \dontrun{

@@ -9,17 +9,27 @@
 ## Description
 
 `CNVds` is an R package developed to evaluate the pathogenicities of
-human CNVs based on the dosage sensitivity scores of the genes that are
-encompassed within. Dosage sensitivity (DS) refers to the phenotypic
-changes a gene may produce due to changes in its copy numbers. This
-package focuses on the following three score metrics:
+human autosomal copy number variations (CNVs) based on the dosage
+sensitivity scores of the genes that are encompassed within. Dosage
+sensitivity (DS) refers to the phenotypic changes a gene may produce due
+to changes in its copy numbers. This package accepts inputs in the
+format of CNV calls, which includes the chromosome number, start & end
+position, type of variation (deletion ‘DEL’ or duplication ‘DUP’), and
+the number of copies. Such information can be obtains using existing CNV
+detection tools like
+[PennCNV](https://genome.cshlp.org/content/17/11/1665). In addition,
+this package can also accept pre-defined lists of genes by gene symbols
+(e.g. ‘BRCA1’, ‘CDC45’) for matching genes to their corresponding DS
+scores.
+
+This package focuses on the following three score metrics:
 
 - Probability of loss intolerance (pLI): the probability that a gene is
   intolerant to a loss of function mutation.
 - Probability of haploinsufficiency (pHI): the probability that a gene
-  is copy number loss.
-- Probability of triplosensitivity (pTS): the probability that the gene
-  is sensitive to copy number gain.
+  is sensitive to copy number loss.
+- Probability of triplosensitivity (pTS): the probability that a gene is
+  sensitive to copy number gain.
 
 The reference DS scores are based on recent publications of genome-wide
 dosage sensitivity mappings. Compared to solely measuring the physical
@@ -41,7 +51,7 @@ devtools::install_github("jenydu/CNVds", build_vignettes = TRUE)
 library("CNVds")
 ```
 
-To run the shinyApp:
+To run the Shiny app:
 
 ``` r
 runCNVds()
@@ -60,12 +70,12 @@ browseVignettes("CNVds")
 - `annotateCNV()`: Given a CNV call, return all genes that are fully
   contained in this region based on the GRCh37 or GRCh38 reference
   genome (specified by user).
-- `findpLI()`: Given a list of genes, find the corresponding pLI scores
-  for each gene.
-- `findpHI()`: Given a list of genes, find the corresponding pHI scores
-  for each gene.
-- `findpTS()`: Given a list of genes, find the corresponding pTS scores
-  for each gene.
+- `findpLI()`: Given a list of genes, find the corresponding pLI (prob.
+  of loss intolerance) scores for each gene.
+- `findpHI()`: Given a list of genes, find the corresponding pHI (prob.
+  of haploinsufficiency) scores for each gene.
+- `findpTS()`: Given a list of genes, find the corresponding pTS (Prob.
+  of triplosensitivity) scores for each gene.
 - `geneDSscores()`: Given a single gene symbol, find its associated pLI,
   pHI, and pTS scores.
 - `geneNoScores()`: Given a list of genes and the name of the DS score
@@ -92,18 +102,30 @@ tables are obtained from the following publications and/or packages:
 
 - `grch37.rda` and `grch38.rda` are obtained from the `annotables`
   package. The source files are published by Ensembl (Cunningham, F. et
-  al. (2022)).
+  al. (2022)). They are subsets of the original datasets to only include
+  the gene symbol, chromosome number, and the start & end position of
+  all autosomal genes.
 - `pHaplo_pTriplo_data.rda` is obtained from Collins, R. L. et
   al. (2022).
 - `pLI_data.rda` is obtained from Karczewski, K. J. et al. (2020).
-- `sampleInputCNV.rda` is obtained from Ming, C, Wang, M, Wang, Q, et
-  al. (2022), and a subset of 200 rows is randomly sampled for package
-  demonstration purposes.
+
+A sample input of 200 CNV calls, `sampleInputCNV.csv`, is included for
+package demonstration purposes. It is randomly subsetted from Ming, C.
+et al. (2021).
 
 The *plotScoresByChr* and *plotCNVcounts* functions uses the ggplot
-function from the `ggplot2` R package. The *plotScoresByChr* also uses
-the drop_na function from the `tidyr` R package, and the setNames
-function from the `stats` R package.
+function from the `ggplot2` R package. The *plotScoresByChr* funciton
+also uses the *drop_na* function from the `tidyr` R package, and the
+*setNames* function from the `stats` R package. The *runCNVds* function
+uses the `shiny` and `shinyalert` R packages to build the shiny app. Its
+implementation adapted codes from the “009-upload” Shiny example, the
+*runTestingPackage* function from the `TestingPackage` R package, and
+code snippets from online forums such as Stack Overflow (see
+*References* section for a complete list of sources; additional details
+can also be found in the `app.R` file).
+
+Other than the above mentioned, the rest of functions are implemented
+solely by the author.
 
 ## References
 
@@ -126,19 +148,26 @@ Karczewski, K. J. et al. (2020). The mutational constraint spectrum
 quantified from variation in 141,456 humans. *Nature* 581, 434–443.
 <https://doi.org/10.1038/s41586-020-2308-7>
 
-Ming, C, Wang, M, Wang, Q, et al. (2022). Whole genome sequencing–based
-copy number variations reveal novel pathways and targets in Alzheimer’s
-disease. *Alzheimer’s & Dementia* 18, 1846-1867.
+Ming, C. et al. (2021). Whole genome sequencing–based copy number
+variations reveal novel pathways and targets in Alzheimer’s disease.
+*Alzheimer’s & Dementia* 18, 1846-1867.
 <https://doi.org/10.1002/alz.12507>
 
 R Core Team (2020). R: A language and environment for statistical
 computing. R Foundation for Statistical Computing, Vienna, Austria. ISBN
 3-900051-07-0. <http://www.R-project.org/>
 
+RStudio (2018). rstudio/shiny-examples: 009-upload. Github.
+<https://github.com/rstudio/shiny-examples/tree/main/009-upload>
+
 Silva, A. (2022). Anjalisilva/TestingPackage: A Simple R Package
 Illustrating Components of an R Package: 2019-2022 BCB410H - Applied
 Bioinformatics, University of Toronto, Canada. GitHub.
 <https://github.com/anjalisilva/TestingPackage>
+
+Thothal. (2019). Use default csv file when no file uploaded to shiny
+app. Stack Overflow.
+<https://stackoverflow.com/questions/55566874/use-default-csv-file-when-no-file-uploaded-to-shiny-app>
 
 Turner, S. (2022). Stephenturner/annotables: R data package for
 annotating/converting Gene IDs. Github.

@@ -2,7 +2,7 @@ citHeader("To cite CNVds in publications use:")
 
 citEntry(
   entry    = "Unpublished",
-  title    = "CNVds: Analyzing Human CNVs Based on Dosage Sensitivity Scores",
+  title    = "CNVds: Analyzing Human Autosomal Copy Number Variations (CNVs) Based on Dosage Sensitivity Scores",
   author   = "Jun Ni Du",
   note     = "Unpublished",
   year     = "2022",

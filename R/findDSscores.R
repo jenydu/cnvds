@@ -1,6 +1,7 @@
 #' Find pHI Scores for a List of Genes
 #'
 #' Given a list of genes, find the corresponding pHI scores for each gene.
+#' Probability of haploinsufficiency (pHI) is the probability that a gene is sensitive to copy number loss.
 #'
 #' @param lstGenes A character vector of gene names.
 #'
@@ -41,6 +42,7 @@ findpHI <- function(lstGenes) {
 #' Find pTS Scores for a List of Genes
 #'
 #' Given a list of genes, find the corresponding pTS scores for each gene.
+#' Probability of triplosensitivity (pTS) is the probability that the gene is sensitive to copy number gain.
 #'
 #' @param lstGenes A character vector of gene names.
 #'
@@ -81,6 +83,7 @@ findpTS <- function(lstGenes) {
 #' Find pLI Scores for a List of Genes
 #'
 #' Given a list of genes, find the corresponding pLI scores for each gene.
+#' Probability of loss intolerance (pLI) is the probability that a gene is intolerant to a loss of function mutation.
 #'
 #' @param lstGenes A character vector of gene names.
 #'

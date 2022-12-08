@@ -15,6 +15,7 @@ Returns a table of size (length of lstGenes) x 2, where each row
 }
 \description{
 Given a list of genes, find the corresponding pHI scores for each gene.
+Probability of haploinsufficiency (pHI) is the probability that a gene is sensitive to copy number loss.
 }
 \examples{
 # Example 1:

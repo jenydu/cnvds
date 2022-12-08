@@ -31,9 +31,9 @@ library(CNVds)
 
 ## Introduction
 
-`CNVds` is an R package developed to evaluate the pathogenicities of human CNVs based on the dosage sensitivity scores (probability of loss intolerance, probability of haploinsufficiency, and probability of triplosensitivity) of the genes that are encompassed within. This package is developed for BCB410H: Applied Bioinformatics at the University of Toronto, Canada. **This document gives a tour of CNVds (version 0.1.0)**. It was written in R Markdown, using the [knitr](https://cran.r-project.org/package=knitr) package for production. See `help(package = "CNVds")` for further details.
+`CNVds` is an R package developed to evaluate the pathogenicities of human CNVs based on the dosage sensitivity scores (probability of loss intolerance (pLI), probability of haploinsufficiency (pHI), and probability of triplosensitivity (pTS)) of the genes that are encompassed within. This package is developed for BCB410H: Applied Bioinformatics at the University of Toronto, Canada. **This document gives a tour of CNVds (version 0.1.0)**. It was written in R Markdown, using the [knitr](https://cran.r-project.org/package=knitr) package for production. See `help(package = "CNVds")` for further details.
 
-To download **CNVds**, use the following commands:
+To download `CNVds`, use the following commands:
 
 ``` r
 require("devtools")
@@ -53,17 +53,29 @@ To list all sample datasets available in the package:
 data(package = "CNVds")
 ```
 
+To run the Shiny app:
+
+``` r
+runCNVds()
+```
+
 <br>
 
 ## Components
 
-<img src="DU_J_A1.png" alt="DU_J_A1" width="800"/>
+<img src="DU_J_A1.png" alt="DU_J_A1" width="700"/>
 
 ## Sample Usage
 
-Load the CNV regions from sampleInputCNV.rda, and plot the distribution of the CNV regions.
+**Data Loading & Gene Annotation**
 
-    load('~/CNVds/data/sampleInputCNV.rda')
+Load the CNV regions from `sampleInputCNV.csv` that is provided in the `inst/extdata` folder.
+
+    inputPath <- system.file("extdata", "sampleInputCNV.csv", package = "CNVds")
+    sampleInputCNV <- read.csv(file = inputPath, header = TRUE)
+
+Plot the distribution of the inputted CNV regions.
+
     plotCNVcounts(sampleInputCNV[c(1:4)])
 
 Annotate the CNV inputs.
@@ -76,24 +88,34 @@ Annotate the CNV inputs.
       annotated <- rbind(annotated, output)
       }
 
+<br>
+
+**Obtaining Dosage Sensitivity Scores**
+
 Quick look-up: "What are the scores associated with gene *CHD8*?"
 
     geneDSscores('CHD8')
 
-Check the amount of genes without pHI scores, then find the corresponding pHI scores.
+Check the amount of genes without pHI (probability of haploinsufficiency) scores.
 
-      noScores <- genesNoScores(annotated$gene, 'pHI')
-      pHIscores <- findpHI(annotated$gene)
+    noScores <- genesNoScores(annotated$gene, 'pHI')
+
+If there's a high percentage of genes without scores, please check whether the inputs are correctly formatted and that the regions are from human autosomal chromosomes.
+
+<br>
+
+Associate each gene with their corresponding pHI score.
+
+    pHIscores <- findpHI(annotated$gene)
 
 Plot the distribution of these scores.
 
-      annotated <- merge(annotated, pHIscores, by='gene')
-      plotScoresByChr(annotated[c('chr', 'gene', 'pHI')], 'pHI', 0.8)
+    annotated <- merge(annotated, pHIscores, by='gene')
+    plotScoresByChr(annotated[c('chr', 'gene', 'pHI')], 'pHI', 0.8)
 
 ## Package References
 
-[Du, J. (2022) CNVds: Analyzing Human CNVs Based on Dosage
-  Sensitivity Scores. Unpublished.](https://github.com/jenydu/CNVds)
+[Du, J. (2022) CNVds: Analyzing Human CNVs Based on Dosage Sensitivity Scores. Unpublished.](https://github.com/jenydu/CNVds)
 
 <br>
 
@@ -109,11 +131,15 @@ Jgraph. (2022). Drawio-desktop. Image created by Du, J. Retrieved November 14, 2
 
 Karczewski, K. J. et al. (2020). The mutational constraint spectrum quantified from variation in 141,456 humans. *Nature* 581, 434--443. <https://doi.org/10.1038/s41586-020-2308-7>
 
-Ming, C, Wang, M, Wang, Q, et al. (2022). Whole genome sequencing--based copy number variations reveal novel pathways and targets in Alzheimer's disease. *Alzheimer's & Dementia* 18, 1846-1867. <https://doi.org/10.1002/alz.12507>
+Ming, C. et al. (2021). Whole genome sequencing--based copy number variations reveal novel pathways and targets in alzheimer's disease. *Alzheimer's & Dementia* 18(10), 1846--1867. <https://doi.org/10.1002/alz.12507>
 
-R Core Team (2013). R: A language and environment for statistical computing. R Foundation for Statistical Computing, Vienna, Austria. ISBN 3-900051-07-0. <http://www.R-project.org/>
+R Core Team (2022). R: A language and environment for statistical computing. R Foundation for Statistical Computing, Vienna, Austria. ISBN 3-900051-07-0. <http://www.R-project.org/>
+
+RStudio (2018). rstudio/shiny-examples: 009-upload. Github. <https://github.com/rstudio/shiny-examples/tree/main/009-upload>
 
 Silva, A. (2022). Anjalisilva/TestingPackage: A Simple R Package Illustrating Components of an R Package: 2019-2022 BCB410H - Applied Bioinformatics, University of Toronto, Canada. GitHub. <https://github.com/anjalisilva/TestingPackage>
+
+Thothal. (2019). Use default csv file when no file uploaded to shiny app. Stack Overflow. <https://stackoverflow.com/questions/55566874/use-default-csv-file-when-no-file-uploaded-to-shiny-app>
 
 Turner, S. (2022). Stephenturner/annotables: R data package for annotating/converting Gene IDs. Github. <https://github.com/stephenturner/annotables>
 

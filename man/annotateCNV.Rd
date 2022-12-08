@@ -10,10 +10,10 @@ annotateCNV(chr, start, end, type, num_copies, reference)
 \item{chr}{An integer of the chromosome number that CNV
 region is in.}
 
-\item{start}{An integer of the starting positon (bp) of
+\item{start}{An integer of the starting position (bp) of
 the CNV region.}
 
-\item{end}{An integer or a character string of the ending positon (bp) of
+\item{end}{An integer or a character string of the ending position (bp) of
 the CNV region.}
 
 \item{type}{A character string of either "DEL" or "DUP" indicating deletion
@@ -25,7 +25,7 @@ copy (duplication), and num_copies = 1 would indicate 1 less copy
 (deletion).}
 
 \item{reference}{A character string of either "GRCh37" or "GRCh38" indicating
-the reference genome that the annotation will be based on.}
+which reference genome that the annotation will be based on.}
 }
 \value{
 Returns a table where each row represents 1 annotated gene, and the
@@ -37,9 +37,9 @@ Returns a table where each row represents 1 annotated gene, and the
 Given a CNV call, which will include the chromosome number, start & end
 position, type of CNV (DUP/DEL), and the number of copies, return all genes
 that are fully contained in this region based on the GRCh37 or GRCh38
-reference genome. This function will return a list of genes that are fully
+reference genome (defined by input argument). This function will return a list of genes that are fully
 encompassed by the input CNV regions, whether each gene is duplicated or
-deleted, and the number of copies.
+deleted, and changes in copy number relative to the diploid baseline.
 }
 \examples{
 # Example 1:

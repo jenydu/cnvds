@@ -80,10 +80,7 @@ plotCNVcounts <- function(lstCNV) {
          (for duplication).")
   }
 
-
-
-
   return(plot_bar)
 }
-# [END]
 
+# [END]

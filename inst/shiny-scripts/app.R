@@ -1,10 +1,31 @@
+# Parts of the following codes are adapted from other sources:
+#
+# 1. the file uploader and customization options are adapted from Shiny examples '009-upload'.
+# RStudio (2018). rstudio/shiny-examples: 009-upload. Github. <https://github.com/rstudio/shiny-examples/tree/main/009-upload>
+#
+# 2. the side panel layout and tabs for the main panel is adapted from app.R from the TestingPackage package.
+# Silva, A. (2022). Anjalisilva/TestingPackage: A Simple R Package Illustrating Components of an R Package: 2019-2022 BCB410H - Applied Bioinformatics, University of Toronto, Canada. GitHub. https://github.com/anjalisilva/TestingPackage
+#
+# 3. the mechanism of loading a default file when no files are uploaded (get_file_or_default) is adapted from the following Stack Overflow post.
+# Thothal. (2019). Use default csv file when no file uploaded to shiny app. Stack Overflow. https://stackoverflow.com/questions/55566874/use-default-csv-file-when-no-file-uploaded-to-shiny-app
+
+
 library(shiny)
+library(shinyalert)
 
 # Define UI for data upload app ----
 ui <- fluidPage(
 
   # App title ----
   titlePanel("Analyze Copy Number Variant (CNV) Regions Based on Dosage Sensitivity Scores"),
+  tags$p("Description: CNVds is an R package developed to evaluate the pathogenicities
+  of human autosomal CNVs based on the dosage sensitivity scores of the genes that are encompassed within.
+  This Shiny App is part of the CNVds package. It annotates each input CNV region with genes that are encompassed
+  within the region, associate each gene with their corresponding dosage sensitivity scores, and
+  visualize the distribution of the inputted CNV regions across the chromosomes as well as the distribution of
+  the dosage sensitivity scores of the annotated genes."),
+
+  br(),
 
   # Sidebar layout with input and output definitions ----
   sidebarLayout(
@@ -13,8 +34,12 @@ ui <- fluidPage(
     sidebarPanel(
 
       tags$p("Upload a .csv file that contains a list of CNV regions.
-             If left empty, a sample input of 1000 CNV regions that is included
+             If left empty, a sample input of 200 CNV regions that is included
              in this package will be used as input."),
+      actionButton(inputId = "button3",
+                   label = "Additional Information of the Sample Input Dataset"),
+      br(),
+
       tags$p("The file should contain 5 columns, in the order of:"),
       tags$ol(
         tags$li("chromosome number"),
@@ -24,6 +49,7 @@ ui <- fluidPage(
         tags$li("number of copies")
       ),
       tags$p("(Please also see the preview of the sample input below for formatting references.)"),
+
       # Input: Select a file ----
       fileInput("file1", "Upload your CSV file",
                 multiple = FALSE,
@@ -47,15 +73,19 @@ ui <- fluidPage(
                                "Double quote" = '"',
                                "Single quote" = "'"),
                    selected = ''),
+
       radioButtons("disp", "Preview of the Inputted Table",
-                   choices = c(Head = "head",
-                               All = "all"),
+                   choices = c('Head (first few rows)' = "head",
+                               'All' = "all"),
                    selected = "head"),
+
       tags$p("Please check that your input is formatted correctly before running the analysis."),
       tableOutput("tbl"),
 
       # Horizontal line ----
       tags$hr(style="border-color: black;"),
+
+      tags$b("Dosage Sensitivity Scores"),
 
       tags$p("The CNVds package currently supports three dosage sensitivity score metrics:"),
       tags$ul(
@@ -84,10 +114,6 @@ ui <- fluidPage(
 
       actionButton(inputId = "button2",
                    label = "Run Analysis"),
-
-
-
-
     ),
 
     # Main panel for displaying outputs ----
@@ -96,7 +122,7 @@ ui <- fluidPage(
                   tabPanel("Overview of the Outputs",
                            tags$hr(style="border-color: black;"),
                            h4("Instructions: In the left side panel, upload your inputs in a .csv file, choose a dosage sensitivity
-                              score, reference genome, and input a threshold value. Confirm your input is formatted correctly and click
+                              score metric, reference genome, and input a threshold value. Confirm your input is formatted correctly and click
                               'Run Analysis'. Alternatively, you can run this analysis on the sample input dataset provided in the package by leaving the file upload section empty."),
                            tags$hr(style="border-color: black;"),
 
@@ -105,20 +131,22 @@ ui <- fluidPage(
                            h4("Total Number of Genes Annotated"),
                            verbatimTextOutput("numGenes"),
 
-                           h5("If the above number is abnormally low, check that
-                              your inputs are formatted correctly. Also, besure
+                           h5("If the above number is abnormally low (as a reference, 24 genes were annotated from the sample input of 200 regions), check that
+                              your inputs are formatted correctly. Also, be sure
                               that you're inputting in human autosomal CNV regions."),
                            br(),
+
                            h4("Genes"),
                            verbatimTextOutput("geneList"),
                            br(),
+
                            h4("Scores"),
                            verbatimTextOutput("scoreList")),
 
                   tabPanel("CNV Region Distribution",
                            tags$hr(style="border-color: black;"),
                            h4("Instructions: In the left side panel, upload your inputs in a .csv file, choose a dosage sensitivity
-                              score, reference genome, and input a threshold value. Confirm your input is formatted correctly and click
+                              score metric, reference genome, and input a threshold value. Confirm your input is formatted correctly and click
                               'Run Analysis'. Alternatively, you can run this analysis on the sample input dataset provided in the package by leaving the file upload section empty."),
                            tags$hr(style="border-color: black;"),
                            h3("Number of CNV Regions in Each Chromosome"),
@@ -128,7 +156,7 @@ ui <- fluidPage(
                   tabPanel("Score Distribution",
                            tags$hr(style="border-color: black;"),
                            h4("Instructions: In the left side panel, upload your inputs in a .csv file, choose a dosage sensitivity
-                              score, reference genome, and input a threshold value. Confirm your input is formatted correctly and click
+                              score metric, reference genome, and input a threshold value. Confirm your input is formatted correctly and click
                               'Run Analysis'. Alternatively, you can run this analysis on the sample input dataset provided in the package by leaving the file upload section empty."),
                            tags$hr(style="border-color: black;"),
                            h3(paste0("Distribution of Gene Dosage Sensitivity Scores in Each Chromosome")),
@@ -162,10 +190,8 @@ server <- function(input, output) {
       }
     })
 
-
   CNVinfo <- eventReactive(eventExpr = input$button2, {
     return(get_file_or_default()[c(1:4)])
-
   })
 
   output$CNVPlot <- renderPlot({
@@ -197,7 +223,6 @@ server <- function(input, output) {
     return(annotated[c('chr', 'gene', input$score)])
   })
 
-
   output$annoPlot <- renderPlot({
     if (! is.null(annotation()))
       plotScoresByChr(annotation(), input$score, as.numeric(input$thresh))
@@ -207,16 +232,28 @@ server <- function(input, output) {
     if (! is.null(annotation()))
       nrow(annotation())
   })
+
   output$geneList <- renderPrint({
     if (! is.null(annotation()))
       annotation()$gene
   })
+
   output$scoreList <- renderPrint({
     if (! is.null(annotation()))
       annotation()
   })
 
+  observeEvent(input$button3, {
+    # Show a modal when the button is pressed
+    shinyalert(title = "Sample Input Dataset",
+               text = "A sample input of 200 CNV regions,
+               subsetted from Ming et al. (2021)'s study.
+               Citation: Ming et al. (2021). Whole genome sequencing–based copy number variations reveal novel pathways and targets in alzheimer's disease. Alzheimer's & Dementia 18(10), 1846–1867. https://doi.org/10.1002/alz.12507",
+               type = "info")
+  })
 }
 
 # Create Shiny app ----
 shinyApp(ui, server)
+
+# [END]

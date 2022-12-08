@@ -22,7 +22,8 @@ pHaplo_pTriplo_data
 }
 \description{
 A table containing 18641 autosomal genes and their corresponding probability
-of haploinsuffciency/triplosensitivity scores.
+of haploinsuffciency/triplosensitivity scores. This score reflects the probability
+that a gene is sensitive to copy number loss (haploinsufficient) or copy number gain (triplosensitive).
 }
 \examples{
 \dontrun{

@@ -2,7 +2,7 @@
 % Please edit documentation in R/plotScoresByChr.R
 \name{plotScoresByChr}
 \alias{plotScoresByChr}
-\title{Plot Ds Scores of the Input Genes Grouped by Chromosomes}
+\title{Plot Dosage Sensitivity Scores of the Input Genes Grouped by Chromosomes}
 \usage{
 plotScoresByChr(genes, DStype, thresh)
 }
@@ -21,9 +21,14 @@ Returns a combined scatter plot (one for each chromosome) of the
    distribution of the gene scores.
 }
 \description{
-Given a list of genes and their corresponding DS scores (pLI/pHI/pTS), plot
+Given a list of genes and their corresponding dosage sensitivity scores (pLI/pHI/pTS), plot
 the distribution of the scores and label genes that are especially
 dosage-sensitive (i.e. above a certain user-defined threshold).
+}
+\details{
+Probability of loss intolerance (pLI) is the probability that a gene is intolerant to a loss of function mutation.
+Probability of haploinsufficiency (pHI) is the probability that a gene is sensitive to copy number loss.
+Probability of triplosensitivity (pTS) is the probability that the gene is sensitive to copy number gain.
 }
 \examples{
 # Example 1:

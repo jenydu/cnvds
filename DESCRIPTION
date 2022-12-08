@@ -1,11 +1,13 @@
 Package: CNVds
 Type: Package
-Title: An R Package for Human CNV Call Analyses With Regards to Dosage 
-  Sensitivity (DS) Scores
+Title: An R Package for Human Autosomal Copy Number Variation (CNV) Call 
+  Analyses With Regards to Dosage Sensitivity (DS) Scores
 Version: 0.1.0
-Author: Jun Ni Du
+Authors@R: person("Jun Ni", "Du", 
+                  email = "junni.du@mail.utoronto.ca", 
+                  role = c("aut", "cre"))
 Maintainer: Jun Ni Du <junni.du@mail.utoronto.ca>
-Description: Evaluate the pathogenicities of human CNVs based on the dosage 
+Description: Evaluate the pathogenicities of human autosomal copy number variations (CNVs) based on the dosage 
   sensitivity scores (probability of loss intolerance, probability of 
   haploinsufficiency, and probability of triplosensitivity) of the genes that 
   are encompassed within.
@@ -16,7 +18,9 @@ RoxygenNote: 7.2.2
 Imports: 
     ggplot2,
     tidyr,
-    shiny
+    shiny,
+    shinyalert
+Remotes: github::hadley/ggplot2
 Depends: 
     R (>= 2.10)
 Suggests: 
@@ -25,3 +29,5 @@ Suggests:
     testthat (>= 3.0.0)
 Config/testthat/edition: 3
 VignetteBuilder: knitr
+URL: https://github.com/jenydu/CNVds
+BugReports: https://github.com/jenydu/CNVds/issues

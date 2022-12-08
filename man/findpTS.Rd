@@ -15,6 +15,7 @@ Returns a table of size (length of lstGenes) x 2, where each row
 }
 \description{
 Given a list of genes, find the corresponding pTS scores for each gene.
+Probability of triplosensitivity (pTS) is the probability that the gene is sensitive to copy number gain.
 }
 \examples{
 # Example 1:

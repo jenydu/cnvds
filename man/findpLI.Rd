@@ -15,6 +15,7 @@ Returns a table of size (length of lstGenes) x 2, where each row
 }
 \description{
 Given a list of genes, find the corresponding pLI scores for each gene.
+Probability of loss intolerance (pLI) is the probability that a gene is intolerant to a loss of function mutation.
 }
 \examples{
 # Example 1:

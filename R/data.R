@@ -1,7 +1,7 @@
 #' GRCh37 Subset
 #'
-#' A subset of the GRCh37 reference genome dataset to only contain gene symbol,
-#' chromosome, and the start & end position of each gene.
+#' A subset of the GRCh37 reference genome dataset to only contain the gene symbol,
+#' chromosome number, and the start & end position of all autosomal genes.
 #'
 #' @source The dataset is directly obtained from the 'annotables' package
 #' (https://github.com/stephenturner/annotables). GRCh37 (Genome
@@ -24,8 +24,8 @@
 
 #' GRCh38 Subset
 #'
-#' A subset of the GRCh38 reference genome dataset to only contain gene symbol,
-#' chromosome, and the start & end position of each gene.
+#' A subset of the GRCh38 reference genome dataset to only contain the gene symbol,
+#' chromosome number, and the start & end position of all autosomal genes.
 #'
 #' @source The dataset is directly obtained from the 'annotables' package
 #' (https://github.com/stephenturner/annotables). GRCh38 (Genome
@@ -49,7 +49,8 @@
 #' Probability of Haploinsufficiency/Triplosensitivity (pHI/pTS) Reference
 #'
 #' A table containing 18641 autosomal genes and their corresponding probability
-#' of haploinsuffciency/triplosensitivity scores.
+#' of haploinsuffciency/triplosensitivity scores. This score reflects the probability
+#' that a gene is sensitive to copy number loss (haploinsufficient) or copy number gain (triplosensitive).
 #'
 #' @source Collins, R. L. et al. (2022). A cross-disorder dosage sensitivity map of the
 #' human genome. \emph{Cell} 185, 3041-3055.e25. \href{https://doi.org/10.1016/j.cell.2022.06.036}{Link}

@@ -2,6 +2,10 @@
 #'
 #' Given a single gene symbol, find its associated pLI, pHI, and pTS scores.
 #'
+#' Probability of loss intolerance (pLI) is the probability that a gene is intolerant to a loss of function mutation.
+#' Probability of haploinsufficiency (pHI) is the probability that a gene is sensitive to copy number loss.
+#' Probability of triplosensitivity (pTS) is the probability that the gene is sensitive to copy number gain.
+#'
 #' @param gene A character string that represents a gene symbol.
 #'
 #' @return Returns a 3x1 table containing the gene's pLI, pHI, and pTS values.
