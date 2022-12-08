@@ -1,5 +1,4 @@
 library(shiny)
-library(shinyalert)
 
 # Define UI for data upload app ----
 ui <- fluidPage(
@@ -16,8 +15,7 @@ ui <- fluidPage(
       tags$p("Upload a .csv file that contains a list of CNV regions.
              If left empty, a sample input of 1000 CNV regions that is included
              in this package will be used as input."),
-      tags$p("The file should contain 5 columns, in the order of:
-             (also see sample input at the bottom for formatting style)"),
+      tags$p("The file should contain 5 columns, in the order of:"),
       tags$ol(
         tags$li("chromosome number"),
         tags$li("start position"),
@@ -25,7 +23,7 @@ ui <- fluidPage(
         tags$li("type of CNV (DEL/DUP)"),
         tags$li("number of copies")
       ),
-
+      tags$p("(Please also see the preview of the sample input below for formatting references.)"),
       # Input: Select a file ----
       fileInput("file1", "Upload your CSV file",
                 multiple = FALSE,
@@ -99,7 +97,7 @@ ui <- fluidPage(
                            tags$hr(style="border-color: black;"),
                            h4("Instructions: In the left side panel, upload your inputs in a .csv file, choose a dosage sensitivity
                               score, reference genome, and input a threshold value. Confirm your input is formatted correctly and click
-                              'Run Analysis'. Alternatively, you can run this analysis on the sample input data provided in the package by not uploading a file."),
+                              'Run Analysis'. Alternatively, you can run this analysis on the sample input dataset provided in the package by leaving the file upload section empty."),
                            tags$hr(style="border-color: black;"),
 
                            h3("Summary of the Annotation Results"),
@@ -121,7 +119,7 @@ ui <- fluidPage(
                            tags$hr(style="border-color: black;"),
                            h4("Instructions: In the left side panel, upload your inputs in a .csv file, choose a dosage sensitivity
                               score, reference genome, and input a threshold value. Confirm your input is formatted correctly and click
-                              'Run Analysis'. Alternatively, you can run this analysis on the sample input data provided in the package by not uploading a file."),
+                              'Run Analysis'. Alternatively, you can run this analysis on the sample input dataset provided in the package by leaving the file upload section empty."),
                            tags$hr(style="border-color: black;"),
                            h3("Number of CNV Regions in Each Chromosome"),
                            br(),
@@ -131,7 +129,7 @@ ui <- fluidPage(
                            tags$hr(style="border-color: black;"),
                            h4("Instructions: In the left side panel, upload your inputs in a .csv file, choose a dosage sensitivity
                               score, reference genome, and input a threshold value. Confirm your input is formatted correctly and click
-                              'Run Analysis'. Alternatively, you can run this analysis on the sample input data provided in the package by not uploading a file."),
+                              'Run Analysis'. Alternatively, you can run this analysis on the sample input dataset provided in the package by leaving the file upload section empty."),
                            tags$hr(style="border-color: black;"),
                            h3(paste0("Distribution of Gene Dosage Sensitivity Scores in Each Chromosome")),
                            br(),
