@@ -1,6 +1,6 @@
-#' Plot Number of CNVS Grouped by Chromosomes
+#' Plot Number of CNVs Grouped by Chromosomes
 #'
-#' Given a list of CNV calls, plot the total number of unique duplication and
+#' Given a list of copy number variation (CNV) calls, plot the total number of unique duplication and
 #' deletion CNV regions in each chromosome.
 #'
 #' @param lstCNV A table consisting of the following columns, in order:

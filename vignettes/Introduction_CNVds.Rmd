@@ -115,7 +115,8 @@ Plot the distribution of these scores.
 
 ## Package References
 
-[Du, J. (2022) CNVds: Analyzing Human CNVs Based on Dosage Sensitivity Scores. Unpublished.](https://github.com/jenydu/CNVds)
+[Du, J. (2022) CNVds: An R Package for Human Autosomal Copy Number Variation (CNV) Call 
+  Analyses With Regards to Dosage Sensitivity (DS) Scores. Unpublished.](https://github.com/jenydu/CNVds)
 
 <br>
 

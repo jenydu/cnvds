@@ -2,7 +2,7 @@
 % Please edit documentation in R/plotCNVcounts.R
 \name{plotCNVcounts}
 \alias{plotCNVcounts}
-\title{Plot Number of CNVS Grouped by Chromosomes}
+\title{Plot Number of CNVs Grouped by Chromosomes}
 \usage{
 plotCNVcounts(lstCNV)
 }
@@ -16,7 +16,7 @@ Returns a barplot of the number of duplication and deletion CNVs
    grouped by chromosomes.
 }
 \description{
-Given a list of CNV calls, plot the total number of unique duplication and
+Given a list of copy number variation (CNV) calls, plot the total number of unique duplication and
 deletion CNV regions in each chromosome.
 }
 \examples{
