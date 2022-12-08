@@ -41,7 +41,11 @@ devtools::install_github("jenydu/CNVds", build_vignettes = TRUE)
 library("CNVds")
 ```
 
-To run the shinyApp: Under construction
+To run the shinyApp:
+
+``` r
+runCNVds()
+```
 
 ## Overview
 
@@ -127,7 +131,7 @@ copy number variations reveal novel pathways and targets in Alzheimer’s
 disease. *Alzheimer’s & Dementia* 18, 1846-1867.
 <https://doi.org/10.1002/alz.12507>
 
-R Core Team (2013). R: A language and environment for statistical
+R Core Team (2020). R: A language and environment for statistical
 computing. R Foundation for Statistical Computing, Vienna, Austria. ISBN
 3-900051-07-0. <http://www.R-project.org/>
 
