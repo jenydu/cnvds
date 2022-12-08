@@ -4,6 +4,7 @@
 #' the distribution of the scores and label genes that are especially
 #' dosage-sensitive (i.e. above a certain user-defined threshold).
 #'
+#' Dosage sensitivity score metrics:
 #' Probability of loss intolerance (pLI) is the probability that a gene is intolerant to a loss of function mutation.
 #' Probability of haploinsufficiency (pHI) is the probability that a gene is sensitive to copy number loss.
 #' Probability of triplosensitivity (pTS) is the probability that the gene is sensitive to copy number gain.

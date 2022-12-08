@@ -2,6 +2,7 @@
 #'
 #' Given a single gene symbol, find its associated pLI, pHI, and pTS scores.
 #'
+#' Dosage sensitivity score metrics:
 #' Probability of loss intolerance (pLI) is the probability that a gene is intolerant to a loss of function mutation.
 #' Probability of haploinsufficiency (pHI) is the probability that a gene is sensitive to copy number loss.
 #' Probability of triplosensitivity (pTS) is the probability that the gene is sensitive to copy number gain.
