@@ -7,11 +7,11 @@
 \format{
 A matrix with columns:
 \describe{
- \item{symbol}{Gene symbol, which is a short-form abbreviation for a
-   particular gene.}
- \item{chr}{The chromosome which the gene is on.}
- \item{start}{The starting position (in bp) of the gene.}
- \item{end}{The ending position (in bp) of the gene.}
+\item{symbol}{Gene symbol, which is a short-form abbreviation for a
+particular gene.}
+\item{chr}{The chromosome which the gene is on.}
+\item{start}{The starting position (in bp) of the gene.}
+\item{end}{The ending position (in bp) of the gene.}
 }
 }
 \source{

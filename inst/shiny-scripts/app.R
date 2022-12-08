@@ -110,7 +110,7 @@ ui <- fluidPage(
 
       textInput(inputId = "thresh",
                 label = "Enter a number between 0 and 1. Genes with scores above
-                this threshold will be coloured in red.", "0.8"),
+                this threshold will be coloured in red and labeled.", "0.8"),
 
       actionButton(inputId = "button2",
                    label = "Run Analysis"),

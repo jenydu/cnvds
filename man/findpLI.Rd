@@ -11,7 +11,7 @@ findpLI(lstGenes)
 }
 \value{
 Returns a table of size (length of lstGenes) x 2, where each row
-   contains the gene name and its pLI value (if found).
+contains the gene name and its pLI value (if found).
 }
 \description{
 Given a list of genes, find the corresponding pLI scores for each gene.

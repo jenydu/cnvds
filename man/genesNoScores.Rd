@@ -14,18 +14,20 @@ scores ('pLI'/'pHI'/'pTS').}
 }
 \value{
 Returns list of genes that don't have a score in the corresponding
-   reference table, and print out the percent of genes without a score.
+reference table, and print out the percent of genes without a score.
 }
 \description{
-Given a list of genes and the name of the dosage sensitivity score, return the list of genes
+Given a list of genes and the name of the dosage sensitivity score (pLI/pHI/pTS, see Details for definitions of the acronyms), return the list of genes
 that don't have a score in the corresponding reference table, and print
 out the percentage of the input genes that doesn't have a score.
 }
 \details{
 Dosage sensitivity score metrics:
-Probability of loss intolerance (pLI) is the probability that a gene is intolerant to a loss of function mutation.
-Probability of haploinsufficiency (pHI) is the probability that a gene is sensitive to copy number loss.
-Probability of triplosensitivity (pTS) is the probability that the gene is sensitive to copy number gain.
+\itemize{
+\item Probability of loss intolerance (pLI) is the probability that a gene is intolerant to a loss of function mutation.
+\item Probability of haploinsufficiency (pHI) is the probability that a gene is sensitive to copy number loss.
+\item Probability of triplosensitivity (pTS) is the probability that the gene is sensitive to copy number gain.
+}
 }
 \examples{
 

@@ -7,9 +7,9 @@
 \format{
 A matrix with columns:
 \describe{
- \item{gene}{Gene symbol, which is a short-form abbreviation for a
-   particular gene.}
- \item{pLI}{Probability of loss intolerance.}
+\item{gene}{Gene symbol, which is a short-form abbreviation for a
+particular gene.}
+\item{pLI}{Probability of loss intolerance.}
 }
 }
 \source{

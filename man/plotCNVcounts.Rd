@@ -13,7 +13,7 @@ type of CNV ('DUP'/'DEL').}
 }
 \value{
 Returns a barplot of the number of duplication and deletion CNVs
-   grouped by chromosomes.
+grouped by chromosomes.
 }
 \description{
 Given a list of copy number variation (CNV) calls, plot the total number of unique duplication and

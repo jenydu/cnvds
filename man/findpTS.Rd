@@ -11,7 +11,7 @@ findpTS(lstGenes)
 }
 \value{
 Returns a table of size (length of lstGenes) x 2, where each row
-   contains the gene name and its pTS value (if found).
+contains the gene name and its pTS value (if found).
 }
 \description{
 Given a list of genes, find the corresponding pTS scores for each gene.

@@ -7,10 +7,10 @@
 \format{
 A matrix with columns:
 \describe{
- \item{X.Gene}{Gene symbol, which is a short-form abbreviation for a
-   particular gene.}
- \item{pHaplo}{Probability of haploinsufficiency.}
- \item{pTriplo}{Probability of triplosensitivity.}
+\item{X.Gene}{Gene symbol, which is a short-form abbreviation for a
+particular gene.}
+\item{pHaplo}{Probability of haploinsufficiency.}
+\item{pTriplo}{Probability of triplosensitivity.}
 }
 }
 \source{

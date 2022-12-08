@@ -29,9 +29,9 @@ which reference genome that the annotation will be based on.}
 }
 \value{
 Returns a table where each row represents 1 annotated gene, and the
-   columns contain the gene name (symbol), chromosome, start position, end
-   position, type of CNV that it belongs to, and the number of copy changes
-   of that CNV.
+columns contain the gene name (symbol), chromosome, start position, end
+position, type of CNV that it belongs to, and the number of copy changes
+of that CNV.
 }
 \description{
 Given a copy number variation (CNV) call, which will include the chromosome number, start & end

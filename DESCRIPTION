@@ -14,6 +14,7 @@ Description: Evaluate the pathogenicities of human autosomal copy number variati
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
+Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.2.2
 Imports: 
     ggplot2,
