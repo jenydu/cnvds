@@ -14,7 +14,8 @@ ui <- fluidPage(
     sidebarPanel(
 
       tags$p("Upload a .csv file that contains a list of CNV regions.
-             If left empty, a sample input of 1000 CNV regions will be used as input."),
+             If left empty, a sample input of 1000 CNV regions that is included
+             in this package will be used as input."),
       tags$p("The file should contain 5 columns, in the order of:
              (also see sample input at the bottom for formatting style)"),
       tags$ol(
@@ -45,8 +46,8 @@ ui <- fluidPage(
       # Input: Select quotes ----
       radioButtons("quote", "Quote",
                    choices = c(None = "",
-                               "Double Quote" = '"',
-                               "Single Quote" = "'"),
+                               "Double quote" = '"',
+                               "Single quote" = "'"),
                    selected = ''),
       radioButtons("disp", "Preview of the Inputted Table",
                    choices = c(Head = "head",
@@ -74,6 +75,11 @@ ui <- fluidPage(
                               "Probability of triplosensitivity (pTS)" = 'pTS'),
                   selected = 'pHI'),
 
+      selectInput("refGene", "Choose a reference genome (for annotation):",
+                  choices = c("Genome Reference Consortium Human Build 37 (GRCh37)" = 'GRCh37',
+                              "Genome Reference Consortium Human Build 38 (GRCh38)" = 'GRCh38'),
+                  selected = 'grch37'),
+
       textInput(inputId = "thresh",
                 label = "Enter a number between 0 and 1. Genes with scores above
                 this threshold will be coloured in red.", "0.8"),
@@ -90,47 +96,48 @@ ui <- fluidPage(
     mainPanel(
       tabsetPanel(type = "tabs",
                   tabPanel("Overview of the Outputs",
-                           h4("Instructions: In the left side panel, upload your
-                              inputs in a .csv file, choose a dosage sensitivity
-                              score and input a threshold value. Confirm your in
-                              put is formatted correctly and click 'Run Analysis
-                              '."),
+                           tags$hr(style="border-color: black;"),
+                           h4("Instructions: In the left side panel, upload your inputs in a .csv file, choose a dosage sensitivity
+                              score, reference genome, and input a threshold value. Confirm your input is formatted correctly and click
+                              'Run Analysis'. Alternatively, you can run this analysis on the sample input data provided in the package by not uploading a file."),
+                           tags$hr(style="border-color: black;"),
 
                            h3("Summary of the Annotation Results"),
                            br(),
                            h4("Total Number of Genes Annotated"),
                            verbatimTextOutput("numGenes"),
-                           br(),
-                           h4("Percent of Genes With No Scores Available"),
-                           verbatimTextOutput("percentNoScores"),
-                           h4("Akaike Information Criterion (AIC)"),
-                           verbatimTextOutput("textOutAIC")),
-                  tabPanel("CNV Region Distribution",
-                           h4("Instructions: In the left side panel, upload your
-                              inputs in a .csv file, choose a dosage sensitivity
-                              score and input a threshold value. Confirm your in
-                              put is formatted correctly and click 'Run Analysis
-                              '."),
 
-                           h3("Pairs Plot of Log-transformed RNAseq Count Dataset:"),
+                           h5("If the above number is abnormally low, check that
+                              your inputs are formatted correctly. Also, besure
+                              that you're inputting in human autosomal CNV regions."),
+                           br(),
+                           h4("Genes"),
+                           verbatimTextOutput("geneList"),
+                           br(),
+                           h4("Scores"),
+                           verbatimTextOutput("scoreList")),
+
+                  tabPanel("CNV Region Distribution",
+                           tags$hr(style="border-color: black;"),
+                           h4("Instructions: In the left side panel, upload your inputs in a .csv file, choose a dosage sensitivity
+                              score, reference genome, and input a threshold value. Confirm your input is formatted correctly and click
+                              'Run Analysis'. Alternatively, you can run this analysis on the sample input data provided in the package by not uploading a file."),
+                           tags$hr(style="border-color: black;"),
+                           h3("Number of CNV Regions in Each Chromosome"),
                            br(),
                            plotOutput("CNVPlot")),
-                  tabPanel("Score Distribution",
-                           h4("Instructions: In the left side panel, upload your
-                              inputs in a .csv file, choose a dosage sensitivity
-                              score and input a threshold value. Confirm your in
-                              put is formatted correctly and click 'Run Analysis
-                              '."),
 
-                           h3("Plot of Information Criteria Values:"),
-                           br(),
+                  tabPanel("Score Distribution",
+                           tags$hr(style="border-color: black;"),
+                           h4("Instructions: In the left side panel, upload your inputs in a .csv file, choose a dosage sensitivity
+                              score, reference genome, and input a threshold value. Confirm your input is formatted correctly and click
+                              'Run Analysis'. Alternatively, you can run this analysis on the sample input data provided in the package by not uploading a file."),
+                           tags$hr(style="border-color: black;"),
+                           h3(paste0("Distribution of Gene Dosage Sensitivity Scores in Each Chromosome")),
                            br(),
                            plotOutput("annoPlot"))
       )
-
-
     )
-
   )
 )
 
@@ -176,7 +183,7 @@ server <- function(input, output) {
                                    get_file_or_default()[i, 3],
                                    get_file_or_default()[i, 4],
                                    get_file_or_default()[i, 5],
-                                   reference = 'GRCh37')
+                                   reference = input$refGene)
       annotated <- rbind(annotated, output)
     }
 
@@ -195,16 +202,20 @@ server <- function(input, output) {
 
   output$annoPlot <- renderPlot({
     if (! is.null(annotation()))
-      plotScoresByChr(annotation(), input$score, input$thresh)
+      plotScoresByChr(annotation(), input$score, as.numeric(input$thresh))
   })
 
   output$numGenes <- renderPrint({
     if (! is.null(annotation()))
       nrow(annotation())
   })
-  output$percentNoScores <- renderPrint({
+  output$geneList <- renderPrint({
     if (! is.null(annotation()))
-      CNVds::genesNoScores(annotation()$gene, input$score)
+      annotation()$gene
+  })
+  output$scoreList <- renderPrint({
+    if (! is.null(annotation()))
+      annotation()
   })
 
 }
