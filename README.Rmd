@@ -88,7 +88,7 @@ Collins, R. L. et al. (2022). A cross-disorder dosage sensitivity map of the hum
 
 Cunningham, F. et al. (2022). Ensembl 2022. *Nucleic Acids Research* 50(1), D988-D995. [https://doi.org/10.1093/nar/gkab1049](https://doi.org/10.1093/nar/gkab1049)
 
-Jgraph. (2022). Drawio-desktop. Image created by Du, J. Retrieved November 14, 2022, from [https://app.diagrams.net/](https://app.diagrams.net/)
+Jgraph (2022). Drawio-desktop. Image created by Du, J. Retrieved November 14, 2022, from [https://app.diagrams.net/](https://app.diagrams.net/)
 
 Karczewski, K. J. et al. (2020). The mutational constraint spectrum quantified from variation in 141,456 humans. *Nature* 581, 434–443. [https://doi.org/10.1038/s41586-020-2308-7](https://doi.org/10.1038/s41586-020-2308-7)
 
@@ -108,7 +108,7 @@ Turner, S. (2022). Stephenturner/annotables: R data package for annotating/conve
 
 Wickham, H. (2016). ggplot2: Elegant Graphics for Data Analysis. Springer-Verlag New York. ISBN 978-3-319-24277-4. [https://ggplot2.tidyverse.org](https://ggplot2.tidyverse.org)
 
-Wickham, H, Girlich, M. (2022). tidyr: Tidy Messy Data. [https://tidyr.tidyverse.org](https://tidyr.tidyverse.org)
+Wickham, H., Girlich, M. (2022). tidyr: Tidy Messy Data. [https://tidyr.tidyverse.org](https://tidyr.tidyverse.org)
 
 ## Acknowledgements
 

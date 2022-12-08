@@ -141,7 +141,7 @@ the human genome. *Cell* 185, 3041-3055.e25.
 Cunningham, F. et al. (2022). Ensembl 2022. *Nucleic Acids Research*
 50(1), D988-D995. <https://doi.org/10.1093/nar/gkab1049>
 
-Jgraph. (2022). Drawio-desktop. Image created by Du, J. Retrieved
+Jgraph (2022). Drawio-desktop. Image created by Du, J. Retrieved
 November 14, 2022, from <https://app.diagrams.net/>
 
 Karczewski, K. J. et al. (2020). The mutational constraint spectrum
@@ -177,7 +177,7 @@ Wickham, H. (2016). ggplot2: Elegant Graphics for Data Analysis.
 Springer-Verlag New York. ISBN 978-3-319-24277-4.
 <https://ggplot2.tidyverse.org>
 
-Wickham, H, Girlich, M. (2022). tidyr: Tidy Messy Data.
+Wickham, H., Girlich, M. (2022). tidyr: Tidy Messy Data.
 <https://tidyr.tidyverse.org>
 
 ## Acknowledgements
