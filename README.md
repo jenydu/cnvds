@@ -74,7 +74,7 @@ browseVignettes("CNVds")
   of loss intolerance) scores for each gene.
 - `findpHI()`: Given a list of genes, find the corresponding pHI (prob.
   of haploinsufficiency) scores for each gene.
-- `findpTS()`: Given a list of genes, find the corresponding pTS (Prob.
+- `findpTS()`: Given a list of genes, find the corresponding pTS (prob.
   of triplosensitivity) scores for each gene.
 - `geneDSscores()`: Given a single gene symbol, find its associated pLI,
   pHI, and pTS scores.
@@ -122,7 +122,7 @@ implementation adapted codes from the “009-upload” Shiny example, the
 *runTestingPackage* function from the `TestingPackage` R package, and
 code snippets from online forums such as Stack Overflow (see
 *References* section for a complete list of sources; additional details
-can also be found in the `app.R` file).
+can also be found in `inst/shiny-scripts/app.R`).
 
 Other than the above mentioned, the rest of functions are implemented
 solely by the author.
